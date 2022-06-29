@@ -1,0 +1,18 @@
+{
+  "name": "PSMart",
+  "version": "1.0.0",
+  "description": "Final Project at Codi_Tech",
+  "main": "index.js",
+  "author": "Yahya Darwich",
+  "license": "MIT",
+  "scripts": {
+    "backend": "cd ../backend && php artisan serve --host 0.0.0.0",
+    "frontend": "cd ../frontend && yarn start",
+    "start": "concurrently --kill-others-on-fail --name \"backend,frontend\" \"yarn run backend\" \"yarn run frontend\"",
+    "postinstall": "cd ../backend && composer install && cd .. && cd ../frontend && yarn install",
+    "test": "echo \"Error: no test specifi&& exed\" it 1"
+  },
+  "dependencies": {
+    "concurrently": "^7.2.2"
+  }
+}
