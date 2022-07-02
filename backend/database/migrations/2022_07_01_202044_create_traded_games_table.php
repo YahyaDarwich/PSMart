@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('description')->nullable();
             $table->string('trade_to')->nullable();
-            $table->boolean('approved')->nullable();
-            $table->boolean('rejected')->nullable();
+            $table->string('status')->nullable();
+            $table->double('price')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

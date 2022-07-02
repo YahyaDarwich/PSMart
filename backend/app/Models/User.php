@@ -22,9 +22,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
+        'isAdmin'
     ];
-
+    public function traddedgames(){
+        return $this->hasMany(TradedGame::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
