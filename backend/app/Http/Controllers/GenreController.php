@@ -13,20 +13,24 @@ class GenreController extends Controller
     public function getAll()
     {
         $genres = Genre::orderby('name', 'Asc')->get();
+        $count = Genre::count();
+        if ($count === 0) {
+            $response = [
+                'status' => 401,
+                'message' => "Genres not found!",
+                'data' => null
+            ];
+            return response($response, 401);
+        }
         if (isset($genres)) {
             $response = [
                 'status' => 200,
                 'message' => "Get All Genres done!",
-                'data' => $genres
+                'data' => $genres,
+                'count' => $count
             ];
             return response($response, 200);
         }
-        $response = [
-            'status' => 401,
-            'message' => "Genres not found!",
-            'data' => null
-        ];
-        return response($response, 401);
     }
 
     // get genre
@@ -56,7 +60,7 @@ class GenreController extends Controller
             $request->all(),
             [
                 'name' => 'required|string',
-                'game_id' => 'integer'
+                'game_id' => 'integer|min:1'
             ]
         );
         if ($validator->fails()) {
@@ -111,7 +115,7 @@ class GenreController extends Controller
             $request->all(),
             [
                 'name' => 'required|string',
-                'game_id' => 'integer'
+                'game_id' => 'integer|min:1'
             ]
         );
         if ($validator->fails()) {
@@ -150,7 +154,6 @@ class GenreController extends Controller
             }
         }
 
-        $genre = Genre::find($id);
         if (isset($genre)) {
             $genre->update($request->all());
             $genre->games()->attach($request->game_id);

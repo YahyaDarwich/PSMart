@@ -17,6 +17,7 @@ class Game extends Model
         'price',
         'features'
     ];
+    protected $with = ['genres', 'platforms'];
 
     public function genres()
     {

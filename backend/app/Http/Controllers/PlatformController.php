@@ -13,20 +13,24 @@ class PlatformController extends Controller
     public function getAll()
     {
         $platforms = Platform::orderby('name', 'Asc')->get();
+        $count = Platform::count();
+        if ($count === 0) {
+            $response = [
+                'status' => 401,
+                'message' => "Platforms not found!",
+                'data' => null
+            ];
+            return response($response, 401);
+        }
         if (isset($platforms)) {
             $response = [
                 'status' => 200,
                 'message' => "Get All Platforms done!",
-                'data' => $platforms
+                'data' => $platforms,
+                'count' => $count
             ];
             return response($response, 200);
         }
-        $response = [
-            'status' => 401,
-            'message' => "Platforms not found!",
-            'data' => null
-        ];
-        return response($response, 401);
     }
 
     // get platform
@@ -56,7 +60,7 @@ class PlatformController extends Controller
             $request->all(),
             [
                 'name' => 'required|string',
-                'game_id' => 'integer'
+                'game_id' => 'integer|min:1'
             ]
         );
         if ($validator->fails()) {
@@ -111,7 +115,7 @@ class PlatformController extends Controller
             $request->all(),
             [
                 'name' => 'required|string',
-                'game_id' => 'integer'
+                'game_id' => 'integer|min:1'
             ]
         );
         if ($validator->fails()) {
@@ -150,7 +154,6 @@ class PlatformController extends Controller
             }
         }
 
-        $platform = Platform::find($id);
         if (isset($platform)) {
             $platform->update($request->all());
             $platform->games()->attach($request->game_id);
