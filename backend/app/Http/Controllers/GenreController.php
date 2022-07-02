@@ -25,7 +25,7 @@ class GenreController extends Controller
         if (isset($genres)) {
             $response = [
                 'status' => 200,
-                'message' => "Get All Genres done!",
+                'message' => "Get all genres done!",
                 'data' => $genres,
                 'count' => $count
             ];

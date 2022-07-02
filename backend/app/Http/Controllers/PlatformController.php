@@ -25,7 +25,7 @@ class PlatformController extends Controller
         if (isset($platforms)) {
             $response = [
                 'status' => 200,
-                'message' => "Get All Platforms done!",
+                'message' => "Get all platforms done!",
                 'data' => $platforms,
                 'count' => $count
             ];

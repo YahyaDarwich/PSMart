@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Game;
-use App\Models\Genre;
-use App\Models\Platform;
+use App\Models\TradedGame;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class GameController extends Controller
+class TraddedGameController extends Controller
 {
-    // getAll games
+    // getAll tradded games
     public function getAll()
     {
-        $games = Game::all();
-        $count = Game::count();
+        $games = TradedGame::all();
+        $count = TradedGame::count();
         if ($count === 0) {
             $response = [
                 'status' => 401,
-                'message' => "Games not found!",
+                'message' => "Tradded games not found!",
                 'data' => null
             ];
             return response($response, 401);
@@ -26,7 +25,7 @@ class GameController extends Controller
         if (isset($games)) {
             $response = [
                 'status' => 200,
-                'message' => "Get all games done!",
+                'message' => "Get all tradded games done!",
                 'data' => $games,
                 'count' => $count
             ];
@@ -34,29 +33,47 @@ class GameController extends Controller
         }
     }
 
-    // get game
+    // get tradded game
     public function get($id)
     {
-        $game = Game::find($id);
+        $game = TradedGame::find($id);
         if (isset($game)) {
-            $game->genres;
-            $game->platforms;
             $response = [
                 'status' => 200,
-                'message' => "Get game $id done!",
+                'message' => "Get tradded game $id done!",
                 'data' => $game
             ];
             return response($response, 200);
         }
         $response = [
             'status' => 401,
-            'message' => "Game $id not exist!",
+            'message' => "Tradded game $id not exist!",
             'data' => null
         ];
         return response($response, 401);
     }
 
-    // Add new game
+    // get tradded game by user
+    public function getByUser($id)
+    {
+        $game = TradedGame::where('user_id', $id)->get();
+        if (isset($game)) {
+            $response = [
+                'status' => 200,
+                'message' => "Get tradded game for user $id done!",
+                'data' => $game
+            ];
+            return response($response, 200);
+        }
+        $response = [
+            'status' => 401,
+            'message' => "Tradded game for user $id not exist!",
+            'data' => null
+        ];
+        return response($response, 401);
+    }
+
+    // Add new tradded game
     public function create(Request $request)
     {
         $validator = Validator::make(
@@ -66,11 +83,10 @@ class GameController extends Controller
                 'publisher' => 'required|string',
                 // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 // 'description' => 'required|string',
-                // 'features' => 'required|string',
+                'trade_to' => 'required|string',
+                'status' => 'required|string',
                 'price' => 'required|numeric',
-                // 'release_date' => 'required|date',
-                'genre_id' => 'required|integer|min:1',
-                'platform_id' => 'required|integer|min:1',
+                'user_id' => 'required|integer|min:1',
             ]
         );
         if ($validator->fails()) {
@@ -82,26 +98,13 @@ class GameController extends Controller
             return response($response, 401);
         }
 
-        // if Genre not exist
-        if (isset($request->genre_id)) {
-            $genre = Genre::find($request->genre_id);
-            if (!isset($genre)) {
+        // if User not exist
+        if (isset($request->user_id)) {
+            $user = User::find($request->user_id);
+            if (!isset($user)) {
                 $response = [
                     'status' => 401,
-                    'message' => "Genre $request->genre_id not exist",
-                    'data' => null
-                ];
-                return response($response, 401);
-            }
-        }
-
-        // if PLatform not exist
-        if (isset($request->platform_id)) {
-            $platform = Platform::find($request->platform_id);
-            if (!isset($platform)) {
-                $response = [
-                    'status' => 401,
-                    'message' => "Platform $request->platform_id not exist",
+                    'message' => "Genre $request->user_id not exist",
                     'data' => null
                 ];
                 return response($response, 401);
@@ -115,26 +118,25 @@ class GameController extends Controller
         //     $files->move($destinationPath, $profileImage); // to access image from frontend http://localhost:8000/image/20220321210916.jpg
         // }
 
-        $game = Game::create([
+        $game = TradedGame::create([
             'name' => $request->get('name'),
             'publisher' => $request->get('publisher'),
             // 'description' => $request->get('description'),
-            // 'features' => $request->get('features'),
-            // 'release_date' => $request->get('release_date'),
+            // 'trade_to' => $request->get('trade_to'),
+            // 'status' => $request->get('status'),
             'price' => $request->get('price'),
+            'user_id' => $request->get('user_id'),
             // 'image' =>  $profileImage
         ]);
-        $game->genres()->attach($request->genre_id);
-        $game->platforms()->attach($request->platform_id);
         $response = [
             'status' => 200,
-            'message' => 'Game added successfully!',
+            'message' => 'Traded game added successfully!',
             'data' => $game
         ];
         return response($response, 200);
     }
 
-    // Update Game
+    // Update tradded game
     public function update(Request $request, $id)
     {
         $validator = Validator::make(
@@ -144,11 +146,10 @@ class GameController extends Controller
                 'publisher' => 'required|string',
                 // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 // 'description' => 'required|string',
-                // 'features' => 'required|string',
+                'trade_to' => 'required|string',
+                'status' => 'required|string',
                 'price' => 'required|numeric',
-                // 'release_date' => 'required|date',
-                'genre_id' => 'integer|min:1',
-                'platform_id' => 'integer|min:1',
+                'user_id' => 'required|integer|min:1',
             ]
         );
         if ($validator->fails()) {
@@ -160,54 +161,13 @@ class GameController extends Controller
             return response($response, 401);
         }
 
-        // if Genre not exist
-        if (isset($request->genre_id)) {
-            $genre = Genre::find($request->genre_id);
-            if (!isset($genre)) {
+        // if User not exist
+        if (isset($request->user_id)) {
+            $user = User::find($request->user_id);
+            if (!isset($user)) {
                 $response = [
                     'status' => 401,
-                    'message' => "Genre $request->genre_id not exist",
-                    'data' => null
-                ];
-                return response($response, 401);
-            }
-        }
-
-        // if PLatform not exist
-        if (isset($request->platform_id)) {
-            $platform = Platform::find($request->platform_id);
-            if (!isset($platform)) {
-                $response = [
-                    'status' => 401,
-                    'message' => "Platform $request->platform_id not exist",
-                    'data' => null
-                ];
-                return response($response, 401);
-            }
-        }
-
-        // if genre already exist in this game
-        $game = Game::find($id);
-        if (isset($game)) {
-            $game = Game::find($id)->genres->contains($request->genre_id); // output boolean: true or false
-            if ($game) {
-                $response = [
-                    'status' => 401,
-                    'message' => "Genre choosed already exist in this Game",
-                    'data' => null
-                ];
-                return response($response, 401);
-            }
-        }
-
-        // if platform already exist in this game
-        $platform = Platform::find($id);
-        if (isset($platform)) {
-            $platform = Platform::find($id)->platforms->contains($request->platform_id); // output boolean: true or false
-            if ($platform) {
-                $response = [
-                    'status' => 401,
-                    'message' => "Platform choosed already exist in this Game",
+                    'message' => "Genre $request->user_id not exist",
                     'data' => null
                 ];
                 return response($response, 401);
@@ -224,40 +184,38 @@ class GameController extends Controller
 
         if (isset($game)) {
             $game->update($request->all());
-            $game->genres()->attach($request->genre_id);
-            $game->platforms()->attach($request->platform_id);
             $response = [
                 'status' => 200,
-                'message' => "Game updated successfully!",
+                'message' => "Tradded game updated successfully!",
                 'data' => $game
             ];
             return response($response, 200);
         }
         $response = [
             'status' => 401,
-            'message' => "Game $id not exist, update failed!",
+            'message' => "Tradded game $id not exist, update failed!",
             'data' => null
         ];
         return response($response, 401);
     }
 
-    // Delete Game
+    // Delete tradded game
     public function delete($id)
     {
-        $game = Game::find($id);
+        $game = TradedGame::find($id);
         if (isset($game)) {
             $game->delete();
-            $all_games = Game::all();
+            $all_games = TradedGame::all();
             $response = [
                 'status' => 200,
-                'message' => "Game deleted successfully!",
+                'message' => "Traded game deleted successfully!",
                 'data' => $all_games
             ];
             return response($response, 200);
         }
         $response = [
             'status' => 401,
-            'message' => "Game $id not exist, delete failed!",
+            'message' => "Traded game $id not exist, delete failed!",
             'data' => null
         ];
         return response($response, 401);

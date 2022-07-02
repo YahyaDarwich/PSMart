@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\TraddedGameController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,18 @@ use App\Http\Controllers\GameController;
 |
 */
 
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'authenticate']);
+
+// Users Routes
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/{id}', [UserController::class, 'get']);
+    Route::put('/{id}', [UserController::class, 'update']);
+    Route::delete('/{id}', [UserController::class, 'delete']);
+});
+Route::get('users', [UserController::class, 'getAllUsers']);
+Route::get('admins', [UserController::class, 'getAllAdmins']);
+Route::get('logeduser', [UserController::class, 'getAuthenticatedUser']);
 
 // Genre Routes
 Route::group(['prefix' => 'genre'], function () {
@@ -43,6 +57,16 @@ Route::group(['prefix' => 'game'], function () {
     Route::post('/', [GameController::class, 'create']);
     Route::put('/{id}', [GameController::class, 'update']);
     Route::delete('/{id}', [GameController::class, 'delete']);
+});
+
+// Tradded game Routes
+Route::group(['prefix' => 'traddedgame'], function () {
+    Route::get('/', [TraddedGameController::class, 'getAll']);
+    Route::get('/{id}', [TraddedGameController::class, 'get']);
+    Route::get('/user/{id}', [TraddedGameController::class, 'getByUser']);
+    Route::post('/', [TraddedGameController::class, 'create']);
+    Route::put('/{id}', [TraddedGameController::class, 'update']);
+    Route::delete('/{id}', [TraddedGameController::class, 'delete']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
