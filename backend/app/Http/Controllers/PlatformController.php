@@ -3,53 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
-use App\Models\Genre;
+use App\Models\Platform;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class GenreController extends Controller
+class PlatformController extends Controller
 {
-    // getAll genres
+    // getAll platforms
     public function getAll()
     {
-        $genres = Genre::orderby('name', 'Asc')->get();
-        if (isset($genres)) {
+        $platforms = Platform::orderby('name', 'Asc')->get();
+        if (isset($platforms)) {
             $response = [
                 'status' => 200,
-                'message' => "Get All Genres done!",
-                'data' => $genres
+                'message' => "Get All Platforms done!",
+                'data' => $platforms
             ];
             return response($response, 200);
         }
         $response = [
             'status' => 401,
-            'message' => "Genres not found!",
+            'message' => "Platforms not found!",
             'data' => null
         ];
         return response($response, 401);
     }
 
-    // get genre
+    // get platform
     public function get($id)
     {
-        $genre = Genre::find($id);
-        if (isset($genre)) {
+        $platform = Platform::find($id);
+        if (isset($platform)) {
             $response = [
                 'status' => 200,
-                'message' => "Get Genre $id done!",
-                'data' => $genre
+                'message' => "Get Platform $id done!",
+                'data' => $platform
             ];
             return response($response, 200);
         }
         $response = [
             'status' => 401,
-            'message' => "Genre $id not exist!",
+            'message' => "Platform $id not exist!",
             'data' => null
         ];
         return response($response, 401);
     }
 
-    // Add new genre
+    // Add new platform
     public function create(Request $request)
     {
         $validator = Validator::make(
@@ -81,30 +81,30 @@ class GenreController extends Controller
             }
         }
 
-        // if Genre already exist
-        $genre = Genre::where('name', $request->name)->first();
-        if (isset($genre)) {
+        // if Platform already exist
+        $platform = Platform::where('name', $request->name)->first();
+        if (isset($platform)) {
             $response = [
                 'status' => 401,
-                'message' => "Genre already exist, added failed!",
+                'message' => "Platform already exist, added failed!",
                 'data' => null
             ];
             return response($response, 401);
         }
 
-        $genre = new Genre;
-        $genre->name = $request->name;
-        $genre->save();
-        $genre->games()->attach($request->game_id);
+        $platform = new Platform;
+        $platform->name = $request->name;
+        $platform->save();
+        $platform->games()->attach($request->game_id);
         $response = [
             'status' => 200,
-            'message' => 'Genre added successfully!',
-            'data' => $genre
+            'message' => 'Platform added successfully!',
+            'data' => $platform
         ];
         return response($response, 200);
     }
 
-    // Update Genre
+    // Update Platform
     public function update(Request $request, $id)
     {
         $validator = Validator::make(
@@ -136,56 +136,56 @@ class GenreController extends Controller
             }
         }
 
-        // if game already exist in this genre
-        $genre = Genre::find($id);
-        if (isset($genre)) {
-            $genre = Genre::find($id)->games->contains($request->game_id); // output boolean: true or false
-            if ($genre) {
+        // if game already exist in this platform
+        $platform = Platform::find($id);
+        if (isset($platform)) {
+            $platform = Platform::find($id)->games->contains($request->game_id); // output boolean: true or false
+            if ($platform) {
                 $response = [
                     'status' => 401,
-                    'message' => "This game already exist in this Genre",
+                    'message' => "This game already exist in this Platform",
                     'data' => null
                 ];
                 return response($response, 401);
             }
         }
 
-        $genre = Genre::find($id);
-        if (isset($genre)) {
-            $genre->update($request->all());
-            $genre->games()->attach($request->game_id);
+        $platform = Platform::find($id);
+        if (isset($platform)) {
+            $platform->update($request->all());
+            $platform->games()->attach($request->game_id);
             $response = [
                 'status' => 200,
-                'message' => "Genre updated successfully!",
-                'data' => $genre
+                'message' => "Platform updated successfully!",
+                'data' => $platform
             ];
             return response($response, 200);
         }
         $response = [
             'status' => 401,
-            'message' => "Genre $id not exist, update failed!",
+            'message' => "Platform $id not exist, update failed!",
             'data' => null
         ];
         return response($response, 401);
     }
 
-    // Delete genre
+    // Delete platform
     public function delete($id)
     {
-        $genre = Genre::find($id);
-        if (isset($genre)) {
-            $genre->delete();
-            $all_genres = Genre::orderby('name', 'Asc')->get();
+        $platform = Platform::find($id);
+        if (isset($platform)) {
+            $platform->delete();
+            $all_platforms = Platform::orderby('name', 'Asc')->get();
             $response = [
                 'status' => 200,
-                'message' => "Genre deleted successfully!",
-                'data' => $all_genres
+                'message' => "Platform deleted successfully!",
+                'data' => $all_platforms
             ];
             return response($response, 200);
         }
         $response = [
             'status' => 401,
-            'message' => "Genre $id not exist, delete failed!",
+            'message' => "Platform $id not exist, delete failed!",
             'data' => null
         ];
         return response($response, 401);
