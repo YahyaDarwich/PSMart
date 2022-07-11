@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import MenuIcon from "@mui/icons-material/Menu";
-import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 const Navbar = () => {
   const open_Menu = () => {
@@ -34,7 +34,7 @@ const Navbar = () => {
         <div id="mobile-menu_overlay" onClick={click_overlay}></div>
         <nav className="nav" id="nav__menu">
           <div onClick={close_Menu} className="menu--close">
-            <CancelPresentationIcon
+            <CloseRoundedIcon
               className="material-icons "
               fontSize="large"
             />

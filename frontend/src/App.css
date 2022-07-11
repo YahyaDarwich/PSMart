@@ -9,8 +9,9 @@
 }
 :root {
   --main-red: #f21b3f;
-  --main-blue:#0066ff;
-  --second-white:#fafafa;
+  --main-blue: #0066ff;
+  --second-white: #fafafa;
+  --transition: ease-in-out all 0.3s;
 }
 html {
   /* any scroll in the web page its smooth */
@@ -19,6 +20,6 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 /* End Gloabal Rules */

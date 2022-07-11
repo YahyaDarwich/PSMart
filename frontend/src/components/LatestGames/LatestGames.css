@@ -1,0 +1,108 @@
+.section_header {
+  height: 70px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 25px;
+  box-shadow: 0 16px 32px 0 rgb(0 0 0 / 12%);
+}
+.section_header h3 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 15px 0 0;
+  width: fit-content;
+}
+.section_header a {
+  list-style: none;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: var(--main-blue);
+}
+.section_header a:hover {
+  background-color: var(--second-white);
+}
+.games_container {
+  display: flex;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
+  margin: auto;
+  margin-top: 50px;
+  max-width: calc(100vw - 70px);
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+.games_container .one_game_container {
+  display: flex;
+  flex-direction: column;
+  margin: 7px;
+  min-width: calc(33.3333vw - 40px);
+  width: calc(33.3333vw - 40px);
+  overflow: hidden;
+  color: black;
+  margin-bottom: 20px;
+  position: relative;
+}
+.games_container .one_game_container a {
+  text-decoration: none;
+  color: inherit;
+}
+.games_container .one_game_container a .img_container {
+  width: 100%;
+  height: 100%;
+}
+.games_container .one_game_container .img_container img {
+  min-width: 100%;
+  width: 100%;
+  transition: opacity .4s ease;
+  border-radius: 5px;
+}
+.games_container .one_game_container .img_container img:hover{
+  opacity: 0.9;
+}
+.games_container .one_game_container a .platforms {
+  position: absolute;
+  top: 2%;
+  left: 3%;
+  color: white;
+  display: flex;
+}
+.games_container .one_game_container a .platform {
+  background-color: rgb(0 0 0 / 80%);
+  font-size: 8px;
+  border-radius: 3px;
+  padding: 4px 3px;
+  margin-right: 4px;
+  font-family: PSRaveFont;
+}
+.games_container .one_game_container a .name {
+  margin-top: 5px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 20px;
+  min-height: 40px;
+  margin-bottom: 0;
+}
+.games_container .one_game_container a .price {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+@media (max-width: 991px) {
+}
+@media (max-width: 767px) {
+  .games_container .one_game_container {
+    width: calc(42vw);
+    min-width: calc(42vw);
+  }
+}
+@media (max-width: 614px) {
+  .games_container .one_game_container {
+    width: calc(70vw);
+    min-width: calc(70vw);
+  }
+}
