@@ -24,7 +24,6 @@
   opacity: 0;
   z-index: 1;
 }
-
 .container .sign-in-container {
   z-index: 2;
 }
@@ -38,11 +37,9 @@
 }
 .form-container form h1 {
   font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 40px;
   color: var(--main-access-color);
-}
-.form-container form span {
-  font-size: 12px;
-  margin-bottom: 50px;
 }
 .form-container form .infield {
   position: relative;
@@ -55,6 +52,7 @@
   border: none;
   outline: none;
   background-color: #f3f3f3;
+  border-radius: 5px;
 }
 .form-container form .infield label {
   position: absolute;
@@ -78,7 +76,7 @@
   letter-spacing: 1px;
   color: white;
   background-color: var(--main-access-color);
-  border: 1px solid var(--second-access-color);
+  border: 1px solid var(--main-access-color);
 }
 .container .form-container button {
   margin-top: 35px;
@@ -102,7 +100,7 @@
 .container #overlayBtn {
   cursor: pointer;
   position: absolute;
-  top: 326px;
+  top: 360px;
   left: 48%;
   transform: translateX(-50%);
   width: 110.22px;
@@ -134,10 +132,15 @@
 }
 .overlay-container .overlay .overlay-left {
   right: 60%;
+  transition: var(--transition--access);
+}
+.overlay-container .overlay .overlay-left button {
+  padding: 7px 9px 8px 0;
 }
 .overlay-container .overlay .overlay-right {
   right: 0;
   transform: translateX(0%);
+  transition: var(--transition--access);
 }
 .overlay-container .overlay .overlay-panel h1 {
   color: white;
@@ -147,8 +150,8 @@
   font-weight: 500;
   line-height: 25px;
   letter-spacing: 0.25px;
-  margin: 20px 0 30px;
   margin-top: 0;
+  margin-bottom: 60px;
 }
 .overlay .overlay-panel button {
   border: none;
@@ -187,5 +190,99 @@
   100% {
     opacity: 1;
     z-index: 5;
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    width: 700px;
+  }
+  .container .form-container {
+    padding: 0 20px;
+  }
+  .container .form-container form {
+    padding: 0 20px;
+  }
+  .overlay-container .overlay .overlay-panel {
+    width: 285px;
+  }
+  .overlay-container .overlay .overlay-panel h1 {
+    font-size: 25px;
+  }
+  .overlay-container .overlay .overlay-panel p {
+    font-size: 15px;
+  }
+  .overlay-container .overlay .overlay-right p {
+    width: 198px;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    width: 95vw;
+    height: 95vh;
+  }
+  .container .form-container {
+    width: 100%;
+    height: 60%;
+  }
+  .container .overlay-container {
+    left: 0;
+    width: 100%;
+    height: 40%;
+    top: 100%;
+    transform: translateY(-100%);
+  }
+  .overlay-container .overlay .overlay-right {
+    right: 2%;
+  }
+  .overlay-container .overlay .overlay-left {
+    right: 61%;
+  }
+  .overlay-container .overlay .overlay-panel {
+    width: 320px;
+  }
+  .overlay-container .overlay .overlay-panel h1 {
+    margin-bottom: 20px;
+  }
+  .overlay-container .overlay .overlay-panel p {
+    margin-bottom: 20px;
+    width: 250px;
+  }
+  .container #overlayBtn {
+    top: 187px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    width: 86.33px;
+    height: 40px;
+  }
+  .right-panel-active .sign-up-container {
+    transform: translateX(0%);
+  }
+  .form-container form h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .form-container form .infield {
+    margin: 5px 0;
+  }
+
+  .form-container form .infield input {
+    padding: 10px 12px;
+  }
+  .container .form-container button {
+    margin-top: 30px;
+    padding: 10px 12px;
+    font-size: 16px;
+    text-transform: none;
+    border-radius: 8px;
+  }
+  .container button {
+    padding: 10px 12px;
+    font-size: 16px;
+    text-transform: none;
+    border-radius: 8px;
+  }
+  .container .overlay-container .overlay-right button {
+    padding: 10px 12px 10px 0;
   }
 }
