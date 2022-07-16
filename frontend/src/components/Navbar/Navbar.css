@@ -45,6 +45,7 @@
 .navbar__container .logo__container .psmart__name {
   font-weight: bold;
   font-size: 18px;
+  color: black;
 }
 .navbar__container .logo__container .psmart__name span {
   color: var(--main-red);

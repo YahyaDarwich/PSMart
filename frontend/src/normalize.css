@@ -75,6 +75,7 @@ pre {
 
 a {
   background-color: transparent;
+  text-decoration: none;
 }
 
 /**
@@ -157,7 +158,6 @@ img {
  * 2. Remove the margin in Firefox and Safari.
  */
 
-button,
 input,
 optgroup,
 select,
@@ -173,7 +173,6 @@ textarea {
  * 1. Show the overflow in Edge.
  */
 
-button,
 input { /* 1 */
   overflow: visible;
 }
@@ -183,7 +182,6 @@ input { /* 1 */
  * 1. Remove the inheritance of text transform in Firefox.
  */
 
-button,
 select { /* 1 */
   text-transform: none;
 }
@@ -192,7 +190,6 @@ select { /* 1 */
  * Correct the inability to style clickable types in iOS and Safari.
  */
 
-button,
 [type="button"],
 [type="reset"],
 [type="submit"] {

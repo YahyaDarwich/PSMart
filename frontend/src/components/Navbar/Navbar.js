@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 const Navbar = () => {
   const open_Menu = () => {
@@ -20,48 +20,47 @@ const Navbar = () => {
   };
   const click_overlay = () => {
     close_Menu();
-  }
+  };
   return (
     <>
       <header className="navbar__container">
         <div className="logo__container">
           {/* <div className="psmart__logo psrave--font">ps <span>m</span></div> */}
-          <div className="psmart__name psrave--font">
-            ps
-            <span>mart</span>
-          </div>
+          <a href="home">
+            <div className="psmart__name psrave--font">
+              ps
+              <span>mart</span>
+            </div>
+          </a>
         </div>
         <div id="mobile-menu_overlay" onClick={click_overlay}></div>
         <nav className="nav" id="nav__menu">
           <div onClick={close_Menu} className="menu--close">
-            <CloseRoundedIcon
-              className="material-icons "
-              fontSize="large"
-            />
+            <CloseRoundedIcon className="material-icons " fontSize="large" />
           </div>
           <ul className="nav__list">
             <li className="nav__item">
-              <a href="#latest" className="nav__link">
-                Latest
+              <a href="home" className="nav__link">
+                Home
               </a>
             </li>
             <li className="nav__item">
-              <a href="#trading" className="nav__link">
+              <a href="trading" className="nav__link">
                 Trading
               </a>
             </li>
             <li className="nav__item">
-              <a href="#browse" className="nav__link">
+              <a href="browse" className="nav__link">
                 Browse
               </a>
             </li>
             <li className="nav__item">
-              <a href="#collections" className="nav__link">
+              <a href="collections" className="nav__link">
                 Collections
               </a>
             </li>
             <li className="nav__item">
-              <a href="#contactus" className="nav__link">
+              <a href="contactus" className="nav__link">
                 Contact us
               </a>
             </li>
