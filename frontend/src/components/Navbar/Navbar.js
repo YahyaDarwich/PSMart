@@ -36,7 +36,7 @@ const Navbar = () => {
         <div id="mobile-menu_overlay" onClick={click_overlay}></div>
         <nav className="nav" id="nav__menu">
           <div onClick={close_Menu} className="menu--close">
-            <CloseRoundedIcon className="material-icons " fontSize="large" />
+            <CloseRoundedIcon className="material-icons" fontSize="large" />
           </div>
           <ul className="nav__list">
             <li className="nav__item">

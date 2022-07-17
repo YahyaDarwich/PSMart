@@ -1,4 +1,5 @@
 import "./App.css";
+import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import AccessPage from "./pages/AccessPage/AccessPage";
 import HomePage from "./pages/HomePage";
@@ -8,7 +9,8 @@ function App() {
     <>
       {/* <Navbar />
       <HomePage /> */}
-      <AccessPage/>
+      {/* <AccessPage/> */}
+      <Footer/>
     </>
   );
 }
