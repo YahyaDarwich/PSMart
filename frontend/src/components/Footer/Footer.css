@@ -5,9 +5,9 @@
   border: none;
   outline: none;
   overflow: hidden;
-  position: absolute;
   bottom: 0;
   left: 0;
+  margin-top: 50px;
 }
 .footer_container .footer_info_section {
   display: flex;

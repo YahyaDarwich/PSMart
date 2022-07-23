@@ -7,7 +7,7 @@ const LatestGames = () => {
   return (
     <>
       <div className="section_header">
-        <h3>New Games</h3>
+        <h3>Latest Games</h3>
         <a href="browse">View All</a>
       </div>
       <div className="games_container">

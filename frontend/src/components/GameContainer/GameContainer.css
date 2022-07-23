@@ -24,7 +24,7 @@
   border-radius: 5px;
 }
 .one_game_container .img_container img:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 .one_game_container a .platforms {
   position: absolute;

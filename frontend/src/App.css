@@ -15,6 +15,7 @@
   --transition--access: ease-in-out all 0.6s;
   --main-access-color: #14213d;
   --second-access-color: #003049;
+  --gray-color: #6b6b6b;
 }
 
 body {
