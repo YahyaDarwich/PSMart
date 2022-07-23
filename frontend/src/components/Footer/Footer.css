@@ -5,6 +5,7 @@
   border: none;
   outline: none;
   overflow: hidden;
+  position: static;
   bottom: 0;
   left: 0;
   margin-top: 50px;

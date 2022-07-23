@@ -95,6 +95,9 @@
   color: black;
   font-size: 15px;
   font-weight: 500;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 .navbar__container .nav__item:hover .nav__link {
   transition: var(--transition);
@@ -174,6 +177,9 @@
   visibility: hidden;
   transition: var(--transition);
 }
+.navbar__container #menu__button {
+  display: none;
+}
 @media (max-width: 767px) {
   .navbar__container .menu--open {
     display: block;
@@ -211,7 +217,6 @@
   }
   .navbar__container .nav__list .nav__item {
     text-align: start;
-    padding: 10px 0;
     margin: 0;
     font-size: 16px;
     height: 40px;
@@ -226,7 +231,13 @@
     align-items: center;
     display: inline-flex;
   }
+  .navbar__container .links_logged {
+    display: none;
+  }
   .navbar__container .links_logged .divider {
     display: none;
+  }
+  .navbar__container #menu__button {
+    display: block;
   }
 }

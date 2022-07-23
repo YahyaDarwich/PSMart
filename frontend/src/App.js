@@ -3,16 +3,28 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import AccessPage from "./pages/AccessPage/AccessPage";
 import BrowsePage from "./pages/BrowsePage/BrowsePage";
+import GameInfoPage from "./pages/GameInfoPage/GameInfoPage";
 import HomePage from "./pages/HomePage";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 
 function App() {
   return (
     <>
       <Navbar />
-      
-      {/* <AccessPage/> */}
-  
-  <BrowsePage/>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Navigate to="/home" />} />
+          <Route exact path="/home" element={<HomePage />} />
+          <Route exact path="/access" element={<AccessPage />} />
+          <Route exact path="/browse" element={<BrowsePage />} />
+        </Routes>
+      </Router>
+      <Footer />
     </>
   );
 }

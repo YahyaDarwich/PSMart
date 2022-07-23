@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Landing.css";
 
 const Landing = () => {
@@ -12,7 +13,9 @@ const Landing = () => {
             Lebanon's First Cryptocurrency Fantasy Trading Gaming Platform Which
             Gives You Real Trading Experience
           </p>
-          <button>Browse</button>
+          <Link to="/browse">
+            <button>Browse</button>
+          </Link>
         </div>
       </div>
       <div className="test"></div>

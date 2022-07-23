@@ -65,6 +65,16 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
+          <div className="links_logged" id="menu__button">
+            <ul>
+              <li className="sign_in">
+                <a href="access">Sign in</a>
+              </li>
+              <li className="sign_up">
+                <a href="access">Register</a>
+              </li>
+            </ul>
+          </div>
         </nav>
         <div className="links_logged">
           <ul>
@@ -72,10 +82,10 @@ const Navbar = () => {
               <span></span>
             </li>
             <li className="sign_in">
-              <a href="">Sign in</a>
+              <a href="access">Sign in</a>
             </li>
             <li className="sign_up">
-              <a href="">Sign up</a>
+              <a href="access">Register</a>
             </li>
           </ul>
         </div>
