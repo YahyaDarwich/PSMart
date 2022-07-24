@@ -8,6 +8,7 @@
   color: black;
   margin-bottom: 25px;
   position: relative;
+  height: 100%;
 }
 .one_game_container a {
   text-decoration: none;
@@ -43,17 +44,16 @@
 }
 .one_game_container a .name {
   margin-top: 5px;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
   letter-spacing: 0.5px;
   line-height: 20px;
-  min-height: 40px;
-  margin-bottom: 0;
+  margin-bottom: 10px;
 }
 .one_game_container a .price {
   margin: 0;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: lighter;
 }
 @media (max-width: 991px) {
 }

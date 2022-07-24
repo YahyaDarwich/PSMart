@@ -14,7 +14,7 @@ const LatestGames = () => {
         <GameContainer
           img={img}
           platform="ps5"
-          name="Call of Duty®: Modern Warfare® II"
+          name="Call of Duty®: Modern"
           price="1.06"
         />
         <GameContainer
@@ -32,7 +32,7 @@ const LatestGames = () => {
         <GameContainer
           img={img}
           platform="ps5"
-          name="Call of Duty®: Modern Warfare® II"
+          name="Call of Duty®: Modern"
           price="1.06"
         />
         <GameContainer

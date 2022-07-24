@@ -10,7 +10,6 @@ const GameContainer = (props) => {
             <img src={props.img} alt={props.name}></img>
           </div>
           <div className="platforms">
-            
             <span className="platform">{props.platform}</span>
           </div>
           <h3 className="name">{props.name}</h3>

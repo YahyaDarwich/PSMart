@@ -9,7 +9,7 @@
 }
 .section_header h3 {
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   margin: 0 15px 0 0;
   width: fit-content;
 }
@@ -32,6 +32,6 @@
   margin-top: 50px;
   max-width: calc(100vw - 70px);
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   min-width: 0;
 }
