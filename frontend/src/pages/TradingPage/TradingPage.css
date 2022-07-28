@@ -1,0 +1,31 @@
+.trade_section_header {
+  height: 80px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 25px;
+}
+.trade_section_header h3 {
+  font-weight: 500;
+  font-size: 22px;
+}
+.trade_section_header span {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0 15px 0 0;
+  width: fit-content;
+  color: var(--gray-color);
+}
+.trade_page_container {
+  display: flex;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
+  margin: auto;
+  margin-top: 20px;
+  max-width: calc(100vw - 50px);
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+

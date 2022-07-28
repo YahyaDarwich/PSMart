@@ -1,0 +1,82 @@
+.trade_game_container {
+  display: flex;
+  flex-direction: column;
+  margin: 7px;
+  min-width: calc(22vw - 50px);
+  width: calc(22vw - 50px);
+  overflow: hidden;
+  color: black;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.trade_game_container a {
+  text-decoration: none;
+  color: inherit;
+}
+.trade_game_container a .img_container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--second-yellow);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.trade_game_container a .img_container img {
+  min-width: 100%;
+  width: 100%;
+  transition: opacity 0.4s ease;
+  border-radius: 6px;
+}
+.trade_game_container a .img_container img:hover {
+  opacity: 0.8;
+}
+.trade_game_container a .trade_info {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 20px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  padding: 4px 2px;
+  width: 100%;
+  background-color: var(--second-yellow);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+.trade_game_container a .trade_info:hover {
+  background-color: white;
+}
+.trade_game_container a .trade_info:hover .arrow-icon {
+  color: var(--second-yellow);
+}
+.trade_game_container .trade_info:hover .img_container {
+  background-color: white;
+}
+.trade_game_container a .trade_info span {
+  max-height: 20px;
+  overflow: hidden;
+}
+@media (max-width: 991px) {
+  .trade_game_container {
+    min-width: calc(27vw - 50px);
+    width: calc(27vw - 50px);
+  }
+}
+@media (max-width: 767px) {
+  .trade_game_container {
+    min-width: calc(35vw - 50px);
+    width: calc(35vw - 50px);
+  }
+}
+@media (max-width: 575px) {
+  .trade_game_container {
+    min-width: calc(51vw - 50px);
+    width: calc(51vw - 50px);
+  }
+  .trade_game_container a .trade_info {
+    font-size: 13px;
+    min-height: 36px;
+  }
+}

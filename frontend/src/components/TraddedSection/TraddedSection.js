@@ -7,7 +7,7 @@ import ExploreIcon from "@mui/icons-material/Explore";
 const TraddedSection = () => {
   return (
     <>
-      <div className="trade_container">
+      <div className="trade_homepage_container">
         <div className="inner_container">
           <div className="container-heading">
             <h3 className="title">How to Trade your PS CD's</h3>
