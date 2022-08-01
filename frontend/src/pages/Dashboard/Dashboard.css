@@ -1,0 +1,17 @@
+.dashboard_container {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  transition: all 0.5s;
+}
+.dashboard_container.overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.navbar__container {
+  display: none;
+  visibility: hidden;
+}
+.footer_container {
+  display: none;
+  visibility: hidden;
+}

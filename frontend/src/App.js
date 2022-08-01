@@ -13,6 +13,7 @@ import {
   Routes,
 } from "react-router-dom";
 import AddTradePage from "./pages/AddTradePage/AddTradePage";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/browse" element={<BrowsePage />} />
           <Route exact path="/trading" element={<TradingPage />} />
           <Route exact path="/add" element={<AddTradePage />} />
+          <Route exact path="/dash/*" element={<Dashboard />} />
         </Routes>
       </Router>
       <Footer />
