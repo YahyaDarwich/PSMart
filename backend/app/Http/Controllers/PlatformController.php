@@ -154,6 +154,7 @@ class PlatformController extends Controller
             }
         }
 
+        $platform = Platform::find($id);
         if (isset($platform)) {
             $platform->update($request->all());
             $platform->games()->attach($request->game_id);

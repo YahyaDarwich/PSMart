@@ -189,8 +189,8 @@ class GameController extends Controller
         // if genre already exist in this game
         $game = Game::find($id);
         if (isset($game)) {
-            $game = Game::find($id)->genres->contains($request->genre_id); // output boolean: true or false
-            if ($game) {
+            $isAvailable = Game::find($id)->genres->contains($request->genre_id); // output boolean: true or false
+            if ($isAvailable) {
                 $response = [
                     'status' => 401,
                     'message' => "Genre choosed already exist in this Game",
@@ -201,10 +201,9 @@ class GameController extends Controller
         }
 
         // if platform already exist in this game
-        $platform = Platform::find($id);
-        if (isset($platform)) {
-            $platform = Platform::find($id)->platforms->contains($request->platform_id); // output boolean: true or false
-            if ($platform) {
+        if (isset($game)) {
+            $isAvailable = Game::find($id)->platforms->contains($request->platform_id); // output boolean: true or false
+            if ($isAvailable) {
                 $response = [
                     'status' => 401,
                     'message' => "Platform choosed already exist in this Game",

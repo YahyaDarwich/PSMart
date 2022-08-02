@@ -154,6 +154,7 @@ class GenreController extends Controller
             }
         }
 
+        $genre = Genre::find($id);
         if (isset($genre)) {
             $genre->update($request->all());
             $genre->games()->attach($request->game_id);

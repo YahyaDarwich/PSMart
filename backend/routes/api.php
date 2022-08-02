@@ -24,7 +24,7 @@ Route::post('register', [UserController::class, 'register']);
 // login
 Route::post('login', [UserController::class, 'authenticate']);
 
-Route::group(['middleware' => ['jwt.verify']], function () {
+//Route::group(['middleware' => ['jwt.verify']], function () {
 
     // Users Routes
     Route::group(['prefix' => 'user'], function () {
@@ -73,7 +73,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::put('/{id}', [TraddedGameController::class, 'update']);
         Route::delete('/{id}', [TraddedGameController::class, 'delete']);
     });
-});
+//});
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
