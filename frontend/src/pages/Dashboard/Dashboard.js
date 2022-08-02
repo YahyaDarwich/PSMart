@@ -4,12 +4,12 @@ import "./Dashboard.css";
 import styled from "styled-components";
 import { Route, Routes } from "react-router-dom";
 import DashboardGenre from "../DashboardGenre/DashboardGenre";
-
+import DashboardPlatform from "../DashboardPlatform/DashboardPlatform";
 const ContentContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding-left: 80px;
+  padding-left: 65px;
 `;
 const Dashboard = () => {
   return (
@@ -19,6 +19,7 @@ const Dashboard = () => {
         <ContentContainer>
           <Routes>
             <Route path="/genre" element={<DashboardGenre />} />
+            <Route path="/platform" element={<DashboardPlatform />} />
           </Routes>
         </ContentContainer>
       </div>

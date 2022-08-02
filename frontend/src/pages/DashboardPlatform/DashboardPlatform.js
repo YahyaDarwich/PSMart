@@ -18,39 +18,39 @@ import AddIcon from "@mui/icons-material/Add";
 
 const DashboardGenre = () => {
   const BASE_URL = "http://localhost:8000/api";
-  const [genres, setGenres] = useState([]);
+  const [platforms, setPlatforms] = useState([]);
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
   // for edit form
-  const [genreName, setGenreName] = useState(undefined);
-  const [genreID, setGenreID] = useState(undefined);
+  const [platformName, setPlatformName] = useState(undefined);
+  const [platformID, setPlatformID] = useState(undefined);
   // for edit & add form
-  const [newGenreName, setNewGenreName] = useState(undefined);
+  const [newPlatformName, setNewPlatformName] = useState(undefined);
   const [run, setRun] = useState(false);
 
   useEffect(() => {
-    // get all genres
+    // get all platforms
     axios
-      .get(`${BASE_URL}/genre`)
-      .then((res) => setGenres(res.data.data))
+      .get(`${BASE_URL}/platform`)
+      .then((res) => setPlatforms(res.data.data))
       .catch((err) => console.log(`Error: ${err.message}`));
   }, [run]);
 
-  // Delete genre
+  // Delete platform
   const handeDelete = (id) => {
     axios
-      .delete(`${BASE_URL}/genre/${id}`)
+      .delete(`${BASE_URL}/platform/${id}`)
       .then((res) => {
-        setGenres(res.data.data);
+        setPlatforms(res.data.data);
       })
       .catch((err) => console.log(`Error: ${err.message}`));
   };
 
-  // Edit genre
+  // Edit platform
   const handleEdit = () => {
-    const genreBody = { name: genreName };
+    const genreBody = { name: platformName };
     axios
-      .put(`${BASE_URL}/genre/${genreID}}`, genreBody)
+      .put(`${BASE_URL}/platform/${platformID}}`, genreBody)
       .then((res) => {
         setEdit(false);
         setRun(!run);
@@ -58,23 +58,23 @@ const DashboardGenre = () => {
       .catch((err) => console.log(`Error: ${err.message}`));
   };
 
-  const handleClickEdit = (genreID, name) => {
-    setGenreName(name);
-    setGenreID(genreID);
+  const handleClickEdit = (platformID, name) => {
+    setPlatformName(name);
+    setPlatformID(platformID);
     setEdit(true);
   };
   const handleCloseEdit = () => {
     setEdit(false);
   };
   const handleChangeInput = (e) => {
-    setGenreName(e.target.value);
+    setPlatformName(e.target.value);
   };
 
-  // Add genre
+  // Add platform
   const handleAdd = () => {
-    const genreBody = { name: newGenreName };
+    const genreBody = { name: newPlatformName };
     axios
-      .post(`${BASE_URL}/genre`, genreBody)
+      .post(`${BASE_URL}/platform`, genreBody)
       .then((res) => {
         setOpen(false);
         setRun(!run);
@@ -89,13 +89,13 @@ const DashboardGenre = () => {
     setOpen(false);
   };
   const handleChangeAddClass = (e) => {
-    setNewGenreName(e.target.value);
+    setNewPlatformName(e.target.value);
   };
 
   // columns
   const columns = [
     { field: "id", headerName: "ID", width: 80 },
-    { field: "name", headerName: "Genre name", width: 200 },
+    { field: "name", headerName: "Platform name", width: 200 },
     {
       field: "actions",
       headerName: "Actions",
@@ -135,8 +135,8 @@ const DashboardGenre = () => {
   return (
     <>
       <DashboardHeader
-        title="Genres"
-        subTitle="Here's you can manage all website genres"
+        title="Platforms"
+        subTitle="Here's you can manage all website platforms"
       />
       <Button
         variant="contained"
@@ -144,11 +144,11 @@ const DashboardGenre = () => {
         onClick={handleClickAdd}
         sx={{margin: "auto"}}
       >
-        Add Genre
+        Add Platform
       </Button>
       <div style={{ height: 400, width: 560, margin: "auto" }}>
         <DataGrid
-          rows={genres}
+          rows={platforms}
           columns={columns}
           pageSize={6}
           rowsPerPageOptions={[6]}
@@ -157,9 +157,9 @@ const DashboardGenre = () => {
       </div>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add New Genre</DialogTitle>
+        <DialogTitle>Add New Platform</DialogTitle>
         <DialogContent>
-          <DialogContentText>Please enter the name of genre</DialogContentText>
+          <DialogContentText>Please enter the name of platform</DialogContentText>
           <FormControl>
             <TextField
               id="outlined-required"
@@ -168,7 +168,7 @@ const DashboardGenre = () => {
               size="small"
               margin="normal"
               type="text"
-              label="Name of genre"
+              label="Name of platform"
               variant="outlined"
               autoFocus
               name="newClass"
@@ -200,10 +200,10 @@ const DashboardGenre = () => {
       </Dialog>
 
       <Dialog open={edit} onClose={handleCloseEdit}>
-        <DialogTitle>Update Genre</DialogTitle>
+        <DialogTitle>Update Platform</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Please enter the new name of genre
+            Please enter the new name of platform
           </DialogContentText>
           <FormControl>
             <TextField
@@ -212,12 +212,12 @@ const DashboardGenre = () => {
               size="small"
               margin="normal"
               type="text"
-              label="Name of genre"
+              label="Name of platform"
               variant="outlined"
               name="className"
               autoFocus
               onChange={handleChangeInput}
-              defaultValue={genreName}
+              defaultValue={platformName}
             />
           </FormControl>
         </DialogContent>

@@ -64,7 +64,7 @@ const Sidebar = () => {
               </a>
             </li>
             <li>
-              <a className="icon icon-photo" href="#">
+              <a className="icon icon-photo" href="platform">
                 <span>Platforms</span>
                 <QueuePlayNextIcon fontSize="large" />
               </a>
