@@ -64,11 +64,11 @@ class GameController extends Controller
             [
                 'name' => 'required|string',
                 'publisher' => 'required|string',
-                // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                // 'description' => 'required|string',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'description' => 'required|string',
                 // 'features' => 'required|string',
                 'price' => 'required|numeric',
-                // 'release_date' => 'required|date',
+                'release_date' => 'required|date',
                 'genre_id' => 'required|integer|min:1',
                 'platform_id' => 'required|integer|min:1',
             ]
@@ -109,20 +109,20 @@ class GameController extends Controller
         }
 
         // upload image
-        // if ($files = $request->file('image')) {
-        //     $destinationPath = 'image/'; // upload path to public folder
-        //     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-        //     $files->move($destinationPath, $profileImage); // to access image from frontend http://localhost:8000/image/20220321210916.jpg
-        // }
+        if ($files = $request->file('image')) {
+            $destinationPath = 'image/'; // upload path to public folder
+            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage); // to access image from frontend http://localhost:8000/image/20220321210916.jpg
+        }
 
         $game = Game::create([
             'name' => $request->get('name'),
             'publisher' => $request->get('publisher'),
-            // 'description' => $request->get('description'),
+            'description' => $request->get('description'),
             // 'features' => $request->get('features'),
-            // 'release_date' => $request->get('release_date'),
+            'release_date' => $request->get('release_date'),
             'price' => $request->get('price'),
-            // 'image' =>  $profileImage
+            'image' =>  $profileImage
         ]);
         $game->genres()->attach($request->genre_id);
         $game->platforms()->attach($request->platform_id);
@@ -142,11 +142,11 @@ class GameController extends Controller
             [
                 'name' => 'required|string',
                 'publisher' => 'required|string',
-                // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                // 'description' => 'required|string',
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'description' => 'required|string',
                 // 'features' => 'required|string',
                 'price' => 'required|numeric',
-                // 'release_date' => 'required|date',
+                'release_date' => 'required|date',
                 'genre_id' => 'integer|min:1',
                 'platform_id' => 'integer|min:1',
             ]
@@ -213,16 +213,23 @@ class GameController extends Controller
             }
         }
 
-        // if ($request->file('image')) {
-        //     $destinationPath = 'image/'; // upload path to public folder
-        //     $profileImage = date('YmdHis') . "." . $request->file('image')->getClientOriginalExtension();
-        //     $request->file('image')->move($destinationPath, $profileImage); // to access image from frontend http://localhost:8000/image/20220321210916.jpg
-        //     $game->image = $profileImage;
-        //     $game->save();
-        // }
+        if ($request->file('image')) {
+            $destinationPath = 'image/'; // upload path to public folder
+            $profileImage = date('YmdHis') . "." . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move($destinationPath, $profileImage); // to access image from frontend http://localhost:8000/image/20220321210916.jpg
+            $game->image = $profileImage;
+            $game->save();
+        }
 
         if (isset($game)) {
-            $game->update($request->all());
+            $game->update([
+                'name' => $request->get('name'),
+                'publisher' => $request->get('publisher'),
+                'description' => $request->get('description'),
+                // 'features' => $request->get('features'),
+                'release_date' => $request->get('release_date'),
+                'price' => $request->get('price'),
+            ]);
             $game->genres()->attach($request->genre_id);
             $game->platforms()->attach($request->platform_id);
             $response = [

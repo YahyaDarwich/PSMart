@@ -60,7 +60,7 @@ Route::post('login', [UserController::class, 'authenticate']);
         Route::get('/', [GameController::class, 'getAll']);
         Route::get('/{id}', [GameController::class, 'get']);
         Route::post('/', [GameController::class, 'create']);
-        Route::put('/{id}', [GameController::class, 'update']);
+        Route::post('/{id}', [GameController::class, 'update']);
         Route::delete('/{id}', [GameController::class, 'delete']);
     });
 
@@ -70,7 +70,7 @@ Route::post('login', [UserController::class, 'authenticate']);
         Route::get('/{id}', [TraddedGameController::class, 'get']);
         Route::get('/user/{id}', [TraddedGameController::class, 'getByUser']);
         Route::post('/', [TraddedGameController::class, 'create']);
-        Route::put('/{id}', [TraddedGameController::class, 'update']);
+        Route::post('/{id}', [TraddedGameController::class, 'update']);
         Route::delete('/{id}', [TraddedGameController::class, 'delete']);
     });
 //});
