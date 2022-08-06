@@ -52,7 +52,7 @@ const Sidebar = () => {
               </a>
             </li>
             <li>
-              <a className="icon icon-location" href="#">
+              <a className="icon icon-location" href="games">
                 <span>Games</span>
                 <SportsEsportsIcon fontSize="large" />
               </a>

@@ -23,7 +23,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <header className="navbar__container">
+      <header className="navbar__container" id="navbar__container">
         <div className="logo__container">
           {/* <div className="psmart__logo psrave--font">ps <span>m</span></div> */}
           <a href="home">
@@ -54,11 +54,11 @@ const Navbar = () => {
                 Browse
               </a>
             </li>
-            <li className="nav__item">
+            {/* <li className="nav__item">
               <a href="collections" className="nav__link">
                 Collections
               </a>
-            </li>
+            </li> */}
             <li className="nav__item">
               <a href="contactus" className="nav__link">
                 Contact us

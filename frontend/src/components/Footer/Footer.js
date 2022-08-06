@@ -7,7 +7,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 function Footer() {
   return (
     <>
-      <div className="footer_container">
+      <div className="footer_container" id="footer_container">
         <div className="footer_info_section">
           <div className="footer--about">
             <div className="psmart__logo psrave--font">

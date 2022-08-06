@@ -33,7 +33,7 @@ const DashboardGenre = () => {
     axios
       .get(`${BASE_URL}/platform`)
       .then((res) => setPlatforms(res.data.data))
-      .catch((err) => console.log(`Error: ${err.message}`));
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, [run]);
 
   // Delete platform
@@ -43,7 +43,7 @@ const DashboardGenre = () => {
       .then((res) => {
         setPlatforms(res.data.data);
       })
-      .catch((err) => console.log(`Error: ${err.message}`));
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
   };
 
   // Edit platform
@@ -55,7 +55,7 @@ const DashboardGenre = () => {
         setEdit(false);
         setRun(!run);
       })
-      .catch((err) => console.log(`Error: ${err.message}`));
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
   };
 
   const handleClickEdit = (platformID, name) => {
@@ -79,7 +79,7 @@ const DashboardGenre = () => {
         setOpen(false);
         setRun(!run);
       })
-      .catch((err) => console.log(`Error: ${err.message}`));
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
   };
 
   const handleClickAdd = () => {
@@ -142,7 +142,7 @@ const DashboardGenre = () => {
         variant="contained"
         startIcon={<AddIcon />}
         onClick={handleClickAdd}
-        sx={{margin: "auto"}}
+        sx={{ margin: "auto" }}
       >
         Add Platform
       </Button>
@@ -159,7 +159,9 @@ const DashboardGenre = () => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add New Platform</DialogTitle>
         <DialogContent>
-          <DialogContentText>Please enter the name of platform</DialogContentText>
+          <DialogContentText>
+            Please enter the name of platform
+          </DialogContentText>
           <FormControl>
             <TextField
               id="outlined-required"

@@ -33,7 +33,7 @@ const DashboardGenre = () => {
     axios
       .get(`${BASE_URL}/genre`)
       .then((res) => setGenres(res.data.data))
-      .catch((err) => console.log(`Error: ${err.message}`));
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, [run]);
 
   // Delete genre
@@ -43,7 +43,7 @@ const DashboardGenre = () => {
       .then((res) => {
         setGenres(res.data.data);
       })
-      .catch((err) => console.log(`Error: ${err.message}`));
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
   };
 
   // Edit genre
@@ -55,7 +55,7 @@ const DashboardGenre = () => {
         setEdit(false);
         setRun(!run);
       })
-      .catch((err) => console.log(`Error: ${err.message}`));
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
   };
 
   const handleClickEdit = (genreID, name) => {
@@ -79,7 +79,7 @@ const DashboardGenre = () => {
         setOpen(false);
         setRun(!run);
       })
-      .catch((err) => console.log(`Error: ${err.message}`));
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
   };
 
   const handleClickAdd = () => {
@@ -142,7 +142,7 @@ const DashboardGenre = () => {
         variant="contained"
         startIcon={<AddIcon />}
         onClick={handleClickAdd}
-        sx={{margin: "auto"}}
+        sx={{ margin: "auto" }}
       >
         Add Genre
       </Button>
