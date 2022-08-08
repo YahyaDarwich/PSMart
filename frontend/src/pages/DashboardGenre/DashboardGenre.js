@@ -37,7 +37,7 @@ const DashboardGenre = () => {
   }, [run]);
 
   // Delete genre
-  const handeDelete = (id) => {
+  const handleDelete = (id) => {
     axios
       .delete(`${BASE_URL}/genre/${id}`)
       .then((res) => {
@@ -123,7 +123,7 @@ const DashboardGenre = () => {
               color="error"
               startIcon={<DeleteIcon />}
               style={{ marginRight: "10px" }}
-              onClick={() => handeDelete(params.row.id)}
+              onClick={() => handleDelete(params.row.id)}
             >
               Delete
             </Button>
@@ -138,24 +138,35 @@ const DashboardGenre = () => {
         title="Genres"
         subTitle="Here's you can manage all website genres"
       />
-      <Button
-        variant="contained"
-        startIcon={<AddIcon />}
-        onClick={handleClickAdd}
-        sx={{ margin: "auto" }}
+      <div
+        style={{
+          margin: "auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-around",
+          height: "88%",
+        }}
       >
-        Add Genre
-      </Button>
-      <div style={{ height: 400, width: 560, margin: "auto" }}>
-        <DataGrid
-          rows={genres}
-          columns={columns}
-          pageSize={6}
-          rowsPerPageOptions={[6]}
-          checkboxSelection
-        />
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={handleClickAdd}
+          sx={{ margin: "auto" }}
+        >
+          Add Genre
+        </Button>
+        <div style={{ height: 400, width: 560, margin: "auto" }}>
+          <DataGrid
+            rows={genres}
+            columns={columns}
+            pageSize={6}
+            rowsPerPageOptions={[6]}
+            checkboxSelection
+            disableSelectionOnClick
+          />
+        </div>
       </div>
-
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add New Genre</DialogTitle>
         <DialogContent>

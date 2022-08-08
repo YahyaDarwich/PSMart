@@ -17,9 +17,10 @@ import axios from "axios";
 import InputAdornment from "@mui/material/InputAdornment";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { BASE_URL } from "../../utils/url";
 
 const AddGameContainer = styled.div`
-  padding: 20px 10px 0px;
+  padding: 10px 10px 0px;
   @media only screen and (max-width: 768px) {
     padding-top: 10px;
   }
@@ -58,7 +59,6 @@ const Input = styled.input`
 `;
 
 const AddGamePopup = ({ open, gameID }) => {
-  const BASE_URL = "http://localhost:8000/api";
   const [image, setImage] = useState();
   const [img, setImg] = useState();
   const [genres, setGenres] = useState([]);
@@ -114,7 +114,6 @@ const AddGamePopup = ({ open, gameID }) => {
       })
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   };
-  useEffect(() => {}, [games]);
 
   return (
     <>
@@ -204,6 +203,7 @@ const AddGamePopup = ({ open, gameID }) => {
                     onChange={handleChange}
                     name="price"
                     size="small"
+                    type="number"
                     id="outlined-adornment-amount"
                     startAdornment={
                       <InputAdornment position="start">$</InputAdornment>
@@ -265,6 +265,7 @@ const AddGamePopup = ({ open, gameID }) => {
                 placeholder="Description"
                 style={{
                   width: "100%",
+                  height: 75,
                   marginTop: "10px",
                   fontSize: "14px",
                   padding: "5px",

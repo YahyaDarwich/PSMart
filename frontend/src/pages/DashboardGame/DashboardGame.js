@@ -12,9 +12,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import AddIcon from "@mui/icons-material/Add";
 import AddGamePopup from "../../components/AddGamePopup/AddGamePopup";
 import EditGamePopup from "../../components/EditGamePopup/EditGamePopup";
+import { BASE_URL } from "../../utils/url";
 
 const DashboardGame = () => {
-  const BASE_URL = "http://localhost:8000/api";
   const [games, setGames] = useState([]);
   const [editOpen, setEditOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
@@ -27,22 +27,17 @@ const DashboardGame = () => {
     axios
       .get(`${BASE_URL}/game`)
       .then((res) => setGames(res.data.data))
-      .catch((err) => console.log(`Error: ${err.message}`));
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, []);
 
   // Delete genre
-  const handeDelete = (id) => {
+  const handleDelete = (id) => {
     axios
       .delete(`${BASE_URL}/game/${id}`)
       .then((res) => {
         setGames(res.data.data);
       })
-      .catch((err) => console.log(`Error: ${err.message}`));
-  };
-
-  const handleClickEdit = (gameID, name) => {
-    setGameName(name);
-    setGameID(gameID);
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
   };
 
   // columns
@@ -80,7 +75,7 @@ const DashboardGame = () => {
               color="error"
               startIcon={<DeleteIcon />}
               style={{ marginRight: "10px" }}
-              onClick={() => handeDelete(params.row.id)}
+              onClick={() => handleDelete(params.row.id)}
             >
               Delete
             </Button>
@@ -95,29 +90,41 @@ const DashboardGame = () => {
         title="Games"
         subTitle="Here's you can manage all website games"
       />
-      <Button
-        variant="contained"
-        startIcon={<AddIcon />}
-        onClick={() => setAddOpen(true)}
-        sx={{ margin: "auto" }}
+      <div
+        style={{
+          margin: "auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-around",
+          height: "88%",
+        }}
       >
-        Add Game
-      </Button>
-      <div style={{ height: 400, width: "100%", margin: "auto" }}>
-        <DataGrid
-          rows={games}
-          columns={columns}
-          pageSize={6}
-          rowsPerPageOptions={[6]}
-          checkboxSelection
-        />
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={() => setAddOpen(true)}
+          sx={{ margin: "auto" }}
+        >
+          Add Game
+        </Button>
+        <div style={{ height: 400, width: "100%", margin: "auto" }}>
+          <DataGrid
+            rows={games}
+            columns={columns}
+            pageSize={6}
+            rowsPerPageOptions={[6]}
+            checkboxSelection
+            disableSelectionOnClick
+          />
+        </div>
       </div>
 
       {/* Add Popup */}
       <Dialog open={addOpen}>
         <DialogTitle
           sx={{
-            background: "linear-gradient(-315deg, #f0f0f0 0%, #90b3fa 74%)",
+            background: "linear-gradient(-315deg, #f0f0f0 0%, #14213d 74%)",
             paddingTop: "5px",
             paddingBottom: "5px",
             marginBottom: "5px",
@@ -138,7 +145,7 @@ const DashboardGame = () => {
       <Dialog open={editOpen}>
         <DialogTitle
           sx={{
-            background: "linear-gradient(-315deg, #f0f0f0 0%, #90b3fa 74%)",
+            background: "linear-gradient(-315deg, #f0f0f0 0%, #14213d 74%)",
             paddingTop: "5px",
             paddingBottom: "5px",
             marginBottom: "5px",

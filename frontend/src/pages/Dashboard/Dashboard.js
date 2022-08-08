@@ -6,12 +6,13 @@ import { Route, Routes } from "react-router-dom";
 import DashboardGenre from "../DashboardGenre/DashboardGenre";
 import DashboardPlatform from "../DashboardPlatform/DashboardPlatform";
 import DashboardGame from "../DashboardGame/DashboardGame";
+import DashTradedGames from "../DashTradedGames/DashTradedGames";
 
 const ContentContainer = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+  width: 100%;
   padding-left: 65px;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 const Dashboard = () => {
   
@@ -21,6 +22,7 @@ const Dashboard = () => {
         <Sidebar />
         <ContentContainer>
           <Routes>
+            <Route path="/tradedgames" element={<DashTradedGames />} />
             <Route path="/games" element={<DashboardGame />} />
             <Route path="/genre" element={<DashboardGenre />} />
             <Route path="/platform" element={<DashboardPlatform />} />

@@ -15,9 +15,9 @@ import FormControl from "@mui/material/FormControl";
 import CancelIcon from "@mui/icons-material/Cancel";
 import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from "@mui/icons-material/Add";
+import { BASE_URL } from "../../utils/url";
 
 const DashboardGenre = () => {
-  const BASE_URL = "http://localhost:8000/api";
   const [platforms, setPlatforms] = useState([]);
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -138,22 +138,34 @@ const DashboardGenre = () => {
         title="Platforms"
         subTitle="Here's you can manage all website platforms"
       />
-      <Button
-        variant="contained"
-        startIcon={<AddIcon />}
-        onClick={handleClickAdd}
-        sx={{ margin: "auto" }}
+      <div
+        style={{
+          margin: "auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-around",
+          height: "88%",
+        }}
       >
-        Add Platform
-      </Button>
-      <div style={{ height: 400, width: 560, margin: "auto" }}>
-        <DataGrid
-          rows={platforms}
-          columns={columns}
-          pageSize={6}
-          rowsPerPageOptions={[6]}
-          checkboxSelection
-        />
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={handleClickAdd}
+          sx={{ margin: "auto" }}
+        >
+          Add Platform
+        </Button>
+        <div style={{ height: 400, width: 560, margin: "auto" }}>
+          <DataGrid
+            rows={platforms}
+            columns={columns}
+            pageSize={6}
+            rowsPerPageOptions={[6]}
+            checkboxSelection
+            disableSelectionOnClick
+          />
+        </div>
       </div>
 
       <Dialog open={open} onClose={handleClose}>

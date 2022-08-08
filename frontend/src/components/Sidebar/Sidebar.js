@@ -46,7 +46,7 @@ const Sidebar = () => {
           </div>
           <ul>
             <li>
-              <a className="icon icon-data" href="#">
+              <a className="icon icon-data" href="tradedgames">
                 <span>Tradded Games</span>
                 <RuleIcon fontSize="large" />
               </a>
@@ -70,7 +70,7 @@ const Sidebar = () => {
               </a>
             </li>
             <li>
-              <a className="icon icon-wallet" href="#">
+              <a className="icon icon-wallet" href="access">
                 <span>Admins</span>
                 <AdminPanelSettingsIcon fontSize="large" />
               </a>
