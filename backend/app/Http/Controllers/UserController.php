@@ -35,7 +35,7 @@ class UserController extends Controller
         }
     }
 
-    // get All users
+    // get All admins
     public function getAllAdmins()
     {
         $admins = User::where('isAdmin', 'true')->get();

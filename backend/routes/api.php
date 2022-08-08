@@ -69,6 +69,7 @@ Route::post('login', [UserController::class, 'authenticate']);
         Route::get('/', [TraddedGameController::class, 'getAll']);
         Route::get('/{id}', [TraddedGameController::class, 'get']);
         Route::get('/user/{id}', [TraddedGameController::class, 'getByUser']);
+        Route::get('/status/{id}', [TraddedGameController::class, 'getByStatus']);
         Route::post('/', [TraddedGameController::class, 'create']);
         Route::post('/{id}', [TraddedGameController::class, 'update']);
         Route::delete('/{id}', [TraddedGameController::class, 'delete']);

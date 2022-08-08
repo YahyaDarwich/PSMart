@@ -33,6 +33,30 @@ class TraddedGameController extends Controller
         }
     }
 
+    // get All Tradded Games by status
+    public function getByStatus($status)
+    {
+        $games = TradedGame::where('status', $status)->get();
+        $count = $games->count();
+        if ($count === 0) {
+            $response = [
+                'status' => 401,
+                'message' => "Games $status not found!",
+                'data' => null
+            ];
+            return response($response, 401);
+        }
+        if (isset($games)) {
+            $response = [
+                'status' => 200,
+                'message' => "Get all $status games done!",
+                'data' => $games,
+                'count' => $count
+            ];
+            return response($response, 200);
+        }
+    }
+
     // get tradded game
     public function get($id)
     {
@@ -82,7 +106,7 @@ class TraddedGameController extends Controller
                 'name' => 'required|string',
                 'publisher' => 'required|string',
                 // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                // 'description' => 'required|string',
+                'description' => 'required|string',
                 'trade_to' => 'required|string',
                 'status' => 'required|string',
                 'price' => 'required|numeric',
@@ -121,9 +145,9 @@ class TraddedGameController extends Controller
         $game = TradedGame::create([
             'name' => $request->get('name'),
             'publisher' => $request->get('publisher'),
-            // 'description' => $request->get('description'),
-            // 'trade_to' => $request->get('trade_to'),
-            // 'status' => $request->get('status'),
+            'description' => $request->get('description'),
+            'trade_to' => $request->get('trade_to'),
+            'status' => $request->get('status'),
             'price' => $request->get('price'),
             'user_id' => $request->get('user_id'),
             // 'image' =>  $profileImage
@@ -144,8 +168,8 @@ class TraddedGameController extends Controller
             [
                 'name' => 'required|string',
                 'publisher' => 'required|string',
-                // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                // 'description' => 'required|string',
+                // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'description' => 'required|string',
                 'trade_to' => 'required|string',
                 'status' => 'required|string',
                 'price' => 'required|numeric',
@@ -182,6 +206,7 @@ class TraddedGameController extends Controller
         //     $game->save();
         // }
 
+        $game = TradedGame::find($id);
         if (isset($game)) {
             $game->update($request->all());
             $response = [
