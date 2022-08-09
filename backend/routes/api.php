@@ -29,7 +29,7 @@ Route::post('login', [UserController::class, 'authenticate']);
     // Users Routes
     Route::group(['prefix' => 'user'], function () {
         Route::get('/{id}', [UserController::class, 'get']);
-        Route::put('/{id}', [UserController::class, 'update']);
+        Route::post('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'delete']);
     });
     Route::get('users', [UserController::class, 'getAllUsers']);
