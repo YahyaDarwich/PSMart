@@ -20,7 +20,7 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { BASE_URL } from "../../utils/url";
 import { toastError, toastSuccess } from "../../utils/Toast";
 
-const AddGameContainer = styled.div`
+const EditGameContainer = styled.div`
   padding: 10px 10px 0px;
   @media only screen and (max-width: 768px) {
     padding-top: 10px;
@@ -59,7 +59,7 @@ const Input = styled.input`
   display: none;
 `;
 
-const AddGamePopup = ({ open, gameID }) => {
+const EditGamePopup = ({ open, gameID }) => {
   const [image, setImage] = useState();
   const [img, setImg] = useState();
   const [genres, setGenres] = useState([]);
@@ -119,7 +119,7 @@ const AddGamePopup = ({ open, gameID }) => {
 
   return (
     <>
-      <AddGameContainer>
+      <EditGameContainer>
         <FormContainer>
           <FormWrapper>
             <ImgContainer>
@@ -296,9 +296,9 @@ const AddGamePopup = ({ open, gameID }) => {
             Save
           </Button>
         </DialogActions>
-      </AddGameContainer>
+      </EditGameContainer>
     </>
   );
 };
 
-export default AddGamePopup;
+export default EditGamePopup;

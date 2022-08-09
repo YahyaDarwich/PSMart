@@ -10,34 +10,34 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import AddIcon from "@mui/icons-material/Add";
-import AddGamePopup from "../../components/AddGamePopup/AddGamePopup";
-import EditGamePopup from "../../components/EditGamePopup/EditGamePopup";
+import AddAdminPopup from "../../components/AddAdminPopup/AddAdminPopup";
+import EditAdminPopup from "../../components/EditAdminPopup/EditAdminPopup";
 import { BASE_URL } from "../../utils/url";
 import { toastError, toastSuccess } from "../../utils/Toast";
 
-const DashboardGame = () => {
-  const [games, setGames] = useState([]);
+const DashboardAdmin = () => {
+  const [admins, setAdmins] = useState([]);
   const [editOpen, setEditOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
   // for edit form
-  const [gameName, setGameName] = useState(undefined);
-  const [gameID, setGameID] = useState(undefined);
+  const [adminName, setAdminName] = useState(undefined);
+  const [adminID, setAdminID] = useState(undefined);
 
   useEffect(() => {
-    // get all games
+    // get all admins
     axios
-      .get(`${BASE_URL}/game`)
-      .then((res) => setGames(res.data.data))
+      .get(`${BASE_URL}/admins`)
+      .then((res) => setAdmins(res.data.data))
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, []);
 
-  // Delete game
+  // Delete Admin
   const handleDelete = (id) => {
     axios
-      .delete(`${BASE_URL}/game/${id}`)
+      .delete(`${BASE_URL}/user/${id}`)
       .then((res) => {
-        setGames(res.data.data);
-        toastSuccess(res.data.message)
+        setAdmins(res.data.data);
+        toastSuccess(res.data.message);
       })
       .catch((err) => toastError(err.response.data.message));
   };
@@ -45,10 +45,9 @@ const DashboardGame = () => {
   // columns
   const columns = [
     { field: "id", headerName: "ID", width: 80 },
-    { field: "name", headerName: "Game name", width: 200 },
-    { field: "publisher", headerName: "Publisher name", width: 200 },
-    { field: "price", headerName: "Price $", width: 100 },
-    { field: "release_date", headerName: "Release Date", width: 150 },
+    { field: "name", headerName: "Admin name", width: 200 },
+    { field: "email", headerName: "Email", width: 200 },
+    { field: "phone", headerName: "Phone", width: 100 },
     {
       field: "actions",
       headerName: "Actions",
@@ -64,8 +63,8 @@ const DashboardGame = () => {
               startIcon={<ModeEditOutlineIcon />}
               style={{ marginRight: "10px" }}
               onClick={() => {
-                setGameID(params.row.id);
-                setGameName(params.row.name);
+                setAdminID(params.row.id);
+                setAdminName(params.row.name);
                 setEditOpen(true);
               }}
             >
@@ -90,7 +89,7 @@ const DashboardGame = () => {
     <>
       <DashboardHeader
         title="Games"
-        subTitle="Here's you can manage all website games"
+        subTitle="Here's you can manage all website admins"
       />
       <div
         style={{
@@ -108,11 +107,11 @@ const DashboardGame = () => {
           onClick={() => setAddOpen(true)}
           sx={{ margin: "auto" }}
         >
-          Add Game
+          Add Admin
         </Button>
         <div style={{ height: 400, width: "100%", margin: "auto" }}>
           <DataGrid
-            rows={games}
+            rows={admins}
             columns={columns}
             pageSize={6}
             rowsPerPageOptions={[6]}
@@ -132,14 +131,14 @@ const DashboardGame = () => {
             marginBottom: "5px",
           }}
         >
-          Add Game
+          Add Admin
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Here you can add a game to the bowse page. Please make sure to
+          <DialogContentText style={{ marginBottom: 20 }}>
+            Here you can add a admin to the dashboard. Please make sure to
             include all the data because all the fields are required.
           </DialogContentText>
-          <AddGamePopup open={(e) => setAddOpen(e)} />
+          <AddAdminPopup open={(e) => setAddOpen(e)} />
         </DialogContent>
       </Dialog>
 
@@ -153,15 +152,17 @@ const DashboardGame = () => {
             marginBottom: "5px",
           }}
         >
-          Edit {gameName} Game
+          Edit {adminName} admin
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>Here you can edit the games.</DialogContentText>
-          <EditGamePopup open={(e) => setEditOpen(e)} gameID={gameID} />
+          <DialogContentText style={{ marginBottom: 20 }}>
+            Here you can edit the admins.
+          </DialogContentText>
+          <EditAdminPopup open={(e) => setEditOpen(e)} adminID={adminID} />
         </DialogContent>
       </Dialog>
     </>
   );
 };
 
-export default DashboardGame;
+export default DashboardAdmin;

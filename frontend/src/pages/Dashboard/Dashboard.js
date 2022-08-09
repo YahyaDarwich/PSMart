@@ -7,6 +7,7 @@ import DashboardGenre from "../DashboardGenre/DashboardGenre";
 import DashboardPlatform from "../DashboardPlatform/DashboardPlatform";
 import DashboardGame from "../DashboardGame/DashboardGame";
 import DashTradedGames from "../DashTradedGames/DashTradedGames";
+import DashboardAdmin from "../DashboradAdmin/DashboradAdmin";
 import { ToastContainer } from "react-toastify";
 
 const ContentContainer = styled.div`
@@ -36,7 +37,8 @@ const Dashboard = () => {
             <Route path="/tradedgames" element={<DashTradedGames />} />
             <Route path="/games" element={<DashboardGame />} />
             <Route path="/genre" element={<DashboardGenre />} />
-            <Route path="/platform" element={<DashboardPlatform />} />
+            <Route path="/platforms" element={<DashboardPlatform />} />
+            <Route path="/admins" element={<DashboardAdmin />} />
           </Routes>
         </ContentContainer>
       </div>

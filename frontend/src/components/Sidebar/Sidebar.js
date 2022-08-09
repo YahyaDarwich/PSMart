@@ -64,13 +64,13 @@ const Sidebar = () => {
               </a>
             </li>
             <li>
-              <a className="icon icon-photo" href="platform">
+              <a className="icon icon-photo" href="platforms">
                 <span>Platforms</span>
                 <QueuePlayNextIcon fontSize="large" />
               </a>
             </li>
             <li>
-              <a className="icon icon-wallet" href="access">
+              <a className="icon icon-wallet" href="admins">
                 <span>Admins</span>
                 <AdminPanelSettingsIcon fontSize="large" />
               </a>
