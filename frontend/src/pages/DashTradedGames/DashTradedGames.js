@@ -12,6 +12,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { toastError, toastSuccess } from "../../utils/Toast";
 
 const DashTradedGames = () => {
   const [reviews, setReviews] = useState([]);
@@ -47,13 +48,15 @@ const DashTradedGames = () => {
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, [run]);
 
+  // delete tradded game
   const handleDelete = (id) => {
     axios
       .delete(`${BASE_URL}/traddedgame/${id}`)
       .then((res) => {
         setRun(!run);
+        toastSuccess(res.data.message);
       })
-      .catch((err) => console.log(`Error: ${err.response.data.message}`));
+      .catch((err) => toastError(err.response.data.message));
   };
 
   const action = (id, action) => {
@@ -75,8 +78,9 @@ const DashTradedGames = () => {
           .post(`${BASE_URL}/traddedgame/${id}`, data)
           .then((res) => {
             setRun(!run);
+            toastSuccess("Tradded game " + action + " successfully!");
           })
-          .catch((err) => console.log(`Error: ${err.response.data.message}`));
+          .catch((err) => toastError(err.response.data.message));
       })
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   };
@@ -244,7 +248,7 @@ const DashTradedGames = () => {
           Add Game
         </DialogTitle>
         <DialogContent>
-          <DialogContentText style={{marginBottom: 30}}>
+          <DialogContentText style={{ marginBottom: 30 }}>
             Here you can see all the info of the tradded game.
           </DialogContentText>
           <ViewDetails open={(e) => setOpen(e)} id={gameID} />

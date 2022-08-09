@@ -39,6 +39,15 @@
   padding: 0;
   list-style: none;
 }
+.st-menu ul li:active {
+  background-color: white;
+}
+.st-menu ul li:focus {
+  background-color: white;
+}
+.st-menu ul li:target {
+  background-color: white;
+}
 .st-menu .open-close-menu {
   display: flex;
   align-items: center;

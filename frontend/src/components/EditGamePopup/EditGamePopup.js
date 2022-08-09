@@ -18,6 +18,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { BASE_URL } from "../../utils/url";
+import { toastError, toastSuccess } from "../../utils/Toast";
 
 const AddGameContainer = styled.div`
   padding: 10px 10px 0px;
@@ -111,8 +112,9 @@ const AddGamePopup = ({ open, gameID }) => {
       .then((res) => {
         console.log(res.data.data);
         open(false);
+        toastSuccess(res.data.message)
       })
-      .catch((err) => console.log(`Error: ${err.response.data.message}`));
+      .catch((err) => toastError(err.response.data.message));
   };
 
   return (

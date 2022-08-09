@@ -15,9 +15,10 @@ import FormControl from "@mui/material/FormControl";
 import CancelIcon from "@mui/icons-material/Cancel";
 import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from "@mui/icons-material/Add";
+import { BASE_URL } from "../../utils/url";
+import { toastError, toastSuccess } from "../../utils/Toast";
 
 const DashboardGenre = () => {
-  const BASE_URL = "http://localhost:8000/api";
   const [genres, setGenres] = useState([]);
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -42,8 +43,9 @@ const DashboardGenre = () => {
       .delete(`${BASE_URL}/genre/${id}`)
       .then((res) => {
         setGenres(res.data.data);
+        toastSuccess(res.data.message)
       })
-      .catch((err) => console.log(`Error: ${err.response.data.message}`));
+      .catch((err) => toastError(err.response.data.message));
   };
 
   // Edit genre
@@ -54,8 +56,9 @@ const DashboardGenre = () => {
       .then((res) => {
         setEdit(false);
         setRun(!run);
+        toastSuccess(res.data.message)
       })
-      .catch((err) => console.log(`Error: ${err.response.data.message}`));
+      .catch((err) => toastError(err.response.data.message));
   };
 
   const handleClickEdit = (genreID, name) => {
@@ -78,8 +81,9 @@ const DashboardGenre = () => {
       .then((res) => {
         setOpen(false);
         setRun(!run);
+        toastSuccess(res.data.message)
       })
-      .catch((err) => console.log(`Error: ${err.response.data.message}`));
+      .catch((err) => toastError(err.response.data.message));
   };
 
   const handleClickAdd = () => {

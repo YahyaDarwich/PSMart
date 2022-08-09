@@ -7,6 +7,7 @@ import DashboardGenre from "../DashboardGenre/DashboardGenre";
 import DashboardPlatform from "../DashboardPlatform/DashboardPlatform";
 import DashboardGame from "../DashboardGame/DashboardGame";
 import DashTradedGames from "../DashTradedGames/DashTradedGames";
+import { ToastContainer } from "react-toastify";
 
 const ContentContainer = styled.div`
   width: 100%;
@@ -15,10 +16,20 @@ const ContentContainer = styled.div`
   overflow-x: hidden;
 `;
 const Dashboard = () => {
-  
   return (
     <>
       <div className="dashboard_container">
+        <ToastContainer
+          position="bottom-center"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable={false}
+          pauseOnHover={false}
+        />
         <Sidebar />
         <ContentContainer>
           <Routes>

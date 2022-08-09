@@ -16,6 +16,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from "@mui/icons-material/Add";
 import { BASE_URL } from "../../utils/url";
+import { toastError, toastSuccess } from "../../utils/Toast";
 
 const DashboardGenre = () => {
   const [platforms, setPlatforms] = useState([]);
@@ -42,8 +43,9 @@ const DashboardGenre = () => {
       .delete(`${BASE_URL}/platform/${id}`)
       .then((res) => {
         setPlatforms(res.data.data);
+        toastSuccess(res.data.message);
       })
-      .catch((err) => console.log(`Error: ${err.response.data.message}`));
+      .catch((err) => toastError(err.response.data.message));
   };
 
   // Edit platform
@@ -54,8 +56,9 @@ const DashboardGenre = () => {
       .then((res) => {
         setEdit(false);
         setRun(!run);
+        toastSuccess(res.data.message);
       })
-      .catch((err) => console.log(`Error: ${err.response.data.message}`));
+      .catch((err) => toastError(err.response.data.message));
   };
 
   const handleClickEdit = (platformID, name) => {
@@ -78,8 +81,9 @@ const DashboardGenre = () => {
       .then((res) => {
         setOpen(false);
         setRun(!run);
+        toastSuccess(res.data.message);
       })
-      .catch((err) => console.log(`Error: ${err.response.data.message}`));
+      .catch((err) => toastError(err.response.data.message));
   };
 
   const handleClickAdd = () => {
