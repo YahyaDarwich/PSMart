@@ -14,10 +14,22 @@ import {
 } from "react-router-dom";
 import AddTradePage from "./pages/AddTradePage/AddTradePage";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+      />
       <Navbar />
       <Router>
         <Routes>

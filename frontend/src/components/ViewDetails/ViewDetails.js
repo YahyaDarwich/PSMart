@@ -9,6 +9,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { BASE_URL } from "../../utils/url";
+import { adminHeaders } from "../../utils/Token";
 
 const ViewDetailsContainer = styled.div`
   padding: 10px 10px 0px;
@@ -62,7 +63,7 @@ const ViewDetails = ({ open, id }) => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/traddedgame/${id}`)
+      .get(`${BASE_URL}/traddedgame/${id}`, adminHeaders)
       .then((res) => {
         setData(res.data.data);
       })

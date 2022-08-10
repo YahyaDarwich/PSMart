@@ -14,6 +14,7 @@ import AddAdminPopup from "../../components/AddAdminPopup/AddAdminPopup";
 import EditAdminPopup from "../../components/EditAdminPopup/EditAdminPopup";
 import { BASE_URL } from "../../utils/url";
 import { toastError, toastSuccess } from "../../utils/Toast";
+import { adminHeaders } from "../../utils/Token";
 
 const DashboardAdmin = () => {
   const [admins, setAdmins] = useState([]);
@@ -26,7 +27,7 @@ const DashboardAdmin = () => {
   useEffect(() => {
     // get all admins
     axios
-      .get(`${BASE_URL}/admins`)
+      .get(`${BASE_URL}/admins`, adminHeaders)
       .then((res) => setAdmins(res.data.data))
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, []);
@@ -34,7 +35,7 @@ const DashboardAdmin = () => {
   // Delete Admin
   const handleDelete = (id) => {
     axios
-      .delete(`${BASE_URL}/user/${id}`)
+      .delete(`${BASE_URL}/user/${id}`, adminHeaders)
       .then((res) => {
         setAdmins(res.data.data);
         toastSuccess(res.data.message);
@@ -88,8 +89,8 @@ const DashboardAdmin = () => {
   return (
     <>
       <DashboardHeader
-        title="Games"
-        subTitle="Here's you can manage all website admins"
+        title="Admins"
+        subTitle="Here's you can manage all dashboard admins"
       />
       <div
         style={{

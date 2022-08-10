@@ -19,6 +19,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { BASE_URL } from "../../utils/url";
 import { toastError, toastSuccess } from "../../utils/Toast";
+import { adminHeaders } from "../../utils/Token";
 
 const EditGameContainer = styled.div`
   padding: 10px 10px 0px;
@@ -68,19 +69,19 @@ const EditGamePopup = ({ open, gameID }) => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/game/${gameID}`)
+      .get(`${BASE_URL}/game/${gameID}`, adminHeaders)
       .then((res) => {
         setGames(res.data.data);
       })
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
 
     axios
-      .get(`${BASE_URL}/genre`)
+      .get(`${BASE_URL}/genre`, adminHeaders)
       .then((res) => setGenres(res.data.data))
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
 
     axios
-      .get(`${BASE_URL}/platform`)
+      .get(`${BASE_URL}/platform`, adminHeaders)
       .then((res) => setPlatforms(res.data.data))
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, []);
@@ -108,11 +109,14 @@ const EditGamePopup = ({ open, gameID }) => {
     if (games.platform_id) formData.append("platform_id", games.platform_id);
     if (img) formData.append("image", img);
     axios
-      .post(`${BASE_URL}/game/${gameID}`, formData)
+      .post(`${BASE_URL}/game/${gameID}`, formData, adminHeaders)
       .then((res) => {
         console.log(res.data.data);
         open(false);
-        toastSuccess(res.data.message)
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 2000);
+        toastSuccess(res.data.message);
       })
       .catch((err) => toastError(err.response.data.message));
   };

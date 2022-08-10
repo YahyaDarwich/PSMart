@@ -17,6 +17,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from "@mui/icons-material/Add";
 import { BASE_URL } from "../../utils/url";
 import { toastError, toastSuccess } from "../../utils/Toast";
+import { adminHeaders } from "../../utils/Token";
 
 const DashboardGenre = () => {
   const [platforms, setPlatforms] = useState([]);
@@ -32,7 +33,7 @@ const DashboardGenre = () => {
   useEffect(() => {
     // get all platforms
     axios
-      .get(`${BASE_URL}/platform`)
+      .get(`${BASE_URL}/platform`, adminHeaders)
       .then((res) => setPlatforms(res.data.data))
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, [run]);
@@ -40,7 +41,7 @@ const DashboardGenre = () => {
   // Delete platform
   const handeDelete = (id) => {
     axios
-      .delete(`${BASE_URL}/platform/${id}`)
+      .delete(`${BASE_URL}/platform/${id}`, adminHeaders)
       .then((res) => {
         setPlatforms(res.data.data);
         toastSuccess(res.data.message);
@@ -52,7 +53,7 @@ const DashboardGenre = () => {
   const handleEdit = () => {
     const genreBody = { name: platformName };
     axios
-      .put(`${BASE_URL}/platform/${platformID}}`, genreBody)
+      .put(`${BASE_URL}/platform/${platformID}}`, genreBody, adminHeaders)
       .then((res) => {
         setEdit(false);
         setRun(!run);
@@ -77,7 +78,7 @@ const DashboardGenre = () => {
   const handleAdd = () => {
     const genreBody = { name: newPlatformName };
     axios
-      .post(`${BASE_URL}/platform`, genreBody)
+      .post(`${BASE_URL}/platform`, genreBody, adminHeaders)
       .then((res) => {
         setOpen(false);
         setRun(!run);

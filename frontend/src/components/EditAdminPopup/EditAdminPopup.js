@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { BASE_URL } from "../../utils/url";
 import { toastError, toastSuccess } from "../../utils/Toast";
+import { adminHeaders } from "../../utils/Token";
 
 const EditAdminContainer = styled.div`
   padding: 10px 10px 0px;
@@ -34,7 +35,7 @@ const EditAdminPopup = ({ open, adminID }) => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/user/${adminID}`)
+      .get(`${BASE_URL}/user/${adminID}`, adminHeaders)
       .then((res) => {
         setAdmin(res.data.data);
       })
@@ -56,10 +57,13 @@ const EditAdminPopup = ({ open, adminID }) => {
       formData.append("password_confirmation", admin.password_confirmation);
 
     axios
-      .post(`${BASE_URL}/user/${adminID}`, formData)
+      .post(`${BASE_URL}/user/${adminID}`, formData, adminHeaders)
       .then((res) => {
         console.log(res.data.data);
         open(false);
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 2000);
         toastSuccess(res.data.message);
       })
       .catch((err) => toastError(err.response.data.message));

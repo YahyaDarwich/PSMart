@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { BASE_URL } from "../../utils/url";
 import { toastError, toastSuccess } from "../../utils/Toast";
+import { adminHeaders } from "../../utils/Token";
 
 const AddGameContainer = styled.div`
   padding: 10px 10px 0px;
@@ -54,10 +55,13 @@ const AddGamePopup = ({ open }) => {
     formData.append("isAdmin", "true");
 
     axios
-      .post(`${BASE_URL}/register`, formData)
+      .post(`${BASE_URL}/register`, formData, adminHeaders)
       .then((res) => {
         console.log(res.data.data);
         open(false);
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 2000);
         toastSuccess(res.data.message);
       })
       .catch((err) => toastError(err.response.data.message));

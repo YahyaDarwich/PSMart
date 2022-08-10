@@ -14,6 +14,7 @@ import AddGamePopup from "../../components/AddGamePopup/AddGamePopup";
 import EditGamePopup from "../../components/EditGamePopup/EditGamePopup";
 import { BASE_URL } from "../../utils/url";
 import { toastError, toastSuccess } from "../../utils/Toast";
+import { adminHeaders } from "../../utils/Token";
 
 const DashboardGame = () => {
   const [games, setGames] = useState([]);
@@ -26,7 +27,7 @@ const DashboardGame = () => {
   useEffect(() => {
     // get all games
     axios
-      .get(`${BASE_URL}/game`)
+      .get(`${BASE_URL}/game`, adminHeaders)
       .then((res) => setGames(res.data.data))
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, []);
@@ -34,7 +35,7 @@ const DashboardGame = () => {
   // Delete game
   const handleDelete = (id) => {
     axios
-      .delete(`${BASE_URL}/game/${id}`)
+      .delete(`${BASE_URL}/game/${id}`, adminHeaders)
       .then((res) => {
         setGames(res.data.data);
         toastSuccess(res.data.message)

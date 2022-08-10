@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import RuleIcon from "@mui/icons-material/Rule";
@@ -9,9 +9,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { deepOrange } from "@mui/material/colors";
+import { accessName } from "../../utils/Token";
 
 const Sidebar = () => {
+  const [adminName, setAdminName] = useState(undefined);
+  const [letter, setLetter] = useState(undefined);
+
   const openMenu = () => {
+    const l = accessName.charAt(0);
+    setLetter(l);
+    setAdminName(accessName);
+    console.log(accessName);
     const menu = document.querySelector(".st-menu");
     const dash = document.querySelector(".dashboard_container");
     dash.classList.toggle("overlay");
@@ -39,10 +47,10 @@ const Sidebar = () => {
                   fontSize: 30,
                 }}
               >
-                Y
+                {letter}
               </Avatar>
             </Stack>
-            <span>Yahya Darwich</span>
+            <span>{adminName}</span>
           </div>
           <ul>
             <li>

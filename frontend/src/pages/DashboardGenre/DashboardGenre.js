@@ -17,6 +17,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from "@mui/icons-material/Add";
 import { BASE_URL } from "../../utils/url";
 import { toastError, toastSuccess } from "../../utils/Toast";
+import { adminHeaders } from "../../utils/Token";
 
 const DashboardGenre = () => {
   const [genres, setGenres] = useState([]);
@@ -32,7 +33,7 @@ const DashboardGenre = () => {
   useEffect(() => {
     // get all genres
     axios
-      .get(`${BASE_URL}/genre`)
+      .get(`${BASE_URL}/genre`, adminHeaders)
       .then((res) => setGenres(res.data.data))
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, [run]);
@@ -40,7 +41,7 @@ const DashboardGenre = () => {
   // Delete genre
   const handleDelete = (id) => {
     axios
-      .delete(`${BASE_URL}/genre/${id}`)
+      .delete(`${BASE_URL}/genre/${id}`, adminHeaders)
       .then((res) => {
         setGenres(res.data.data);
         toastSuccess(res.data.message)
@@ -52,7 +53,7 @@ const DashboardGenre = () => {
   const handleEdit = () => {
     const genreBody = { name: genreName };
     axios
-      .put(`${BASE_URL}/genre/${genreID}}`, genreBody)
+      .put(`${BASE_URL}/genre/${genreID}}`, genreBody, adminHeaders)
       .then((res) => {
         setEdit(false);
         setRun(!run);
@@ -77,7 +78,7 @@ const DashboardGenre = () => {
   const handleAdd = () => {
     const genreBody = { name: newGenreName };
     axios
-      .post(`${BASE_URL}/genre`, genreBody)
+      .post(`${BASE_URL}/genre`, genreBody, adminHeaders)
       .then((res) => {
         setOpen(false);
         setRun(!run);

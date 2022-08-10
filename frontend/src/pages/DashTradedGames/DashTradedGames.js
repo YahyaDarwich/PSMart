@@ -13,6 +13,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { toastError, toastSuccess } from "../../utils/Toast";
+import { adminHeaders } from "../../utils/Token";
 
 const DashTradedGames = () => {
   const [reviews, setReviews] = useState([]);
@@ -25,7 +26,7 @@ const DashTradedGames = () => {
   useEffect(() => {
     // get all reviews
     axios
-      .get(`${BASE_URL}/traddedgame/status/review`)
+      .get(`${BASE_URL}/traddedgame/status/review`, adminHeaders)
       .then((res) => {
         setReviews(res.data.data);
       })
@@ -33,7 +34,7 @@ const DashTradedGames = () => {
 
     // get all approved
     axios
-      .get(`${BASE_URL}/traddedgame/status/approved`)
+      .get(`${BASE_URL}/traddedgame/status/approved`, adminHeaders)
       .then((res) => {
         setApproved(res.data.data);
       })
@@ -41,7 +42,7 @@ const DashTradedGames = () => {
 
     // get all rejected
     axios
-      .get(`${BASE_URL}/traddedgame/status/rejected`)
+      .get(`${BASE_URL}/traddedgame/status/rejected`, adminHeaders)
       .then((res) => {
         setRejected(res.data.data);
       })
@@ -51,7 +52,7 @@ const DashTradedGames = () => {
   // delete tradded game
   const handleDelete = (id) => {
     axios
-      .delete(`${BASE_URL}/traddedgame/${id}`)
+      .delete(`${BASE_URL}/traddedgame/${id}`, adminHeaders)
       .then((res) => {
         setRun(!run);
         toastSuccess(res.data.message);
@@ -62,7 +63,7 @@ const DashTradedGames = () => {
   const action = (id, action) => {
     let data = {};
     axios
-      .get(`${BASE_URL}/traddedgame/${id}`)
+      .get(`${BASE_URL}/traddedgame/${id}`, adminHeaders)
       .then((res) => {
         data = {
           name: res.data.data.name,
@@ -75,7 +76,7 @@ const DashTradedGames = () => {
         };
 
         axios
-          .post(`${BASE_URL}/traddedgame/${id}`, data)
+          .post(`${BASE_URL}/traddedgame/${id}`, data, adminHeaders)
           .then((res) => {
             setRun(!run);
             toastSuccess("Tradded game " + action + " successfully!");
