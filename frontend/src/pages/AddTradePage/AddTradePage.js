@@ -1,6 +1,5 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
-import FormHelperText from "@mui/material/FormHelperText";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -10,6 +9,8 @@ import FormControl from "@mui/material/FormControl";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 
 const Input = styled.input`
   display: none;
@@ -31,6 +32,7 @@ const AddImg = styled.img`
 const AddTradePage = () => {
   return (
     <>
+      <Navbar />
       <div className="form_title">
         <h1>New Trading Post</h1>
         <p>PLease fill all fiels with your game information.</p>
@@ -144,11 +146,7 @@ const AddTradePage = () => {
             </label>
           </ImgContainer>
           <div className="form-btns">
-            <Button
-              variant="contained"
-              color="success"
-              sx={{ margin: 1 }}
-            >
+            <Button variant="contained" color="success" sx={{ margin: 1 }}>
               Submit
             </Button>
             <Button variant="contained" color="error" sx={{ margin: 1 }}>
@@ -157,6 +155,7 @@ const AddTradePage = () => {
           </div>
         </div>
       </form>
+      <Footer />
     </>
   );
 };

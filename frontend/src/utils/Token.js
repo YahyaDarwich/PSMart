@@ -12,4 +12,4 @@ export const adminHeaders = {
 export const userHeaders = {
   headers: { Authorization: `Bearer ${userToken}` },
 };
-export { accessName };
+export { accessName, userToken, adminToken };

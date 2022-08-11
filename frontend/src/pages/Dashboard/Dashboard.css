@@ -7,11 +7,3 @@
 .dashboard_container.overlay {
   background-color: rgba(0, 0, 0, 0.4);
 }
-.navbar__container {
-  display: none;
-  visibility: hidden;
-}
-.footer_container {
-  display: none;
-  visibility: hidden;
-}

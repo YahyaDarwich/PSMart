@@ -1,9 +1,6 @@
 import "./App.css";
-import Footer from "./components/Footer/Footer";
-import Navbar from "./components/Navbar/Navbar";
 import AccessPage from "./pages/AccessPage/AccessPage";
 import BrowsePage from "./pages/BrowsePage/BrowsePage";
-import GameInfoPage from "./pages/GameInfoPage/GameInfoPage";
 import TradingPage from "./pages/TradingPage/TradingPage";
 import HomePage from "./pages/HomePage";
 import {
@@ -30,7 +27,6 @@ function App() {
         draggable={false}
         pauseOnHover={false}
       />
-      <Navbar />
       <Router>
         <Routes>
           <Route exact path="/" element={<Navigate to="/home" />} />
@@ -42,7 +38,6 @@ function App() {
           <Route exact path="/dash/*" element={<Dashboard />} />
         </Routes>
       </Router>
-      <Footer />
     </>
   );
 }

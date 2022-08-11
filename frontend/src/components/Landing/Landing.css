@@ -64,6 +64,9 @@
 }
 
 @media (max-width: 767px) {
+  .landing--container .landing--text{
+    max-width: 90%;
+  }
   .landing--container .landing--text h2{
     font-size: 25px;
   }

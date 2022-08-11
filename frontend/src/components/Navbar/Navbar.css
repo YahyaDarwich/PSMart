@@ -59,6 +59,11 @@
   padding: 0;
   cursor: pointer;
 }
+.navbar__container .nav__list #profile,
+.navbar__container .nav__list #logout,
+.navbar__container .nav__list #add-game {
+  display: none;
+}
 .navbar__container .nav__list .nav__item {
   list-style: none;
   margin-right: 5px;
@@ -129,6 +134,63 @@
   text-decoration: none;
   text-align: center;
 }
+.navbar__container .avatar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e9ecef;
+  padding: 1px 0 1px 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: ease-in-out all 0.5s;
+  position: relative;
+}
+.navbar__container .avatar .user_menu {
+  background-color: #fff;
+  right: 0;
+  position: absolute;
+  min-width: 163px;
+  margin: auto;
+  text-align: center;
+  list-style: none;
+  top: 45px;
+  display: none;
+  border-radius: 10px;
+  z-index: 999;
+  box-shadow: rgb(0 0 0 / 30%) 0px 5px 12px;
+}
+.navbar__container .avatar .user_menu::before {
+  content: "";
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+  border-width: 10px;
+  position: absolute;
+  right: 50%;
+  top: -25px;
+}
+.navbar__container .avatar .user_menu li {
+  padding: 5px 0;
+}
+.navbar__container .avatar .user_menu li:hover {
+  background-color: #e9ecef;
+}
+.navbar__container .avatar .user_menu li a {
+  color: black;
+  font-size: 14px;
+}
+.navbar__container .avatar:hover {
+  background-color: #14213d;
+}
+.navbar__container .avatar:hover span {
+  color: #f1faee;
+  user-select: none;
+}
+.navbar__container .avatar span {
+  margin-right: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #14213d;
+}
 .navbar__container .links_logged ul .sign_in {
   cursor: pointer;
   padding: 0 5px 0 5px;
@@ -181,6 +243,11 @@
   display: none;
 }
 @media (max-width: 767px) {
+  .navbar__container .nav__list #profile,
+  .navbar__container .nav__list #logout,
+  .navbar__container .nav__list #add-game {
+    display: block;
+  }
   .navbar__container .menu--open {
     display: block;
     cursor: pointer;
@@ -231,7 +298,8 @@
     align-items: center;
     display: inline-flex;
   }
-  .navbar__container .links_logged {
+  .navbar__container .links_logged,
+  .navbar__container .avatar {
     display: none;
   }
   .navbar__container .links_logged .divider {
