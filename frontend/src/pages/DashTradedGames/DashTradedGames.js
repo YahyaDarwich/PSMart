@@ -67,11 +67,13 @@ const DashTradedGames = () => {
       .then((res) => {
         data = {
           name: res.data.data.name,
-          price: res.data.data.price,
           description: res.data.data.description,
           trade_to: res.data.data.trade_to,
           publisher: res.data.data.publisher,
           user_id: res.data.data.user_id,
+          genre: res.data.data.genre,
+          platform: res.data.data.platform,
+          location: res.data.data.location,
           status: action,
         };
 
@@ -91,7 +93,6 @@ const DashTradedGames = () => {
     { field: "id", headerName: "ID", width: 80 },
     { field: "name", headerName: "Game name", width: 200 },
     { field: "publisher", headerName: "Publisher name", width: 200 },
-    { field: "price", headerName: "Price $", width: 100 },
     { field: "trade_to", headerName: "Trade To", width: 150 },
     {
       field: "actions",

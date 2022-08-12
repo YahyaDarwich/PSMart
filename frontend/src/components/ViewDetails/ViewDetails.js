@@ -51,14 +51,12 @@ const Input = styled.input`
 `;
 
 const ViewDetails = ({ open, id }) => {
-  const [image, setImage] = useState();
   const [data, setData] = useState({
     name: "",
     publisher: "",
-    price: "",
     description: "",
     trade_to: "",
-    // image: "",
+    location: "",
   });
 
   useEffect(() => {
@@ -76,9 +74,7 @@ const ViewDetails = ({ open, id }) => {
         <FormContainer>
           <FormWrapper>
             <ImgContainer>
-              <Img
-              // src={"http://localhost:8000/image/" + data.image}
-              />
+              <Img src={"http://localhost:8000/image/" + data.image} />
               <label htmlFor="contained-button-file">
                 <Input
                   accept="image/*"
@@ -141,22 +137,19 @@ const ViewDetails = ({ open, id }) => {
                   size="small"
                   value={data.trade_to}
                 />
-                <FormControl fullWidth>
-                  <InputLabel htmlFor="outlined-adornment-amount">
-                    Price
-                  </InputLabel>
-                  <OutlinedInput
-                    name="price"
-                    type="number"
-                    size="small"
-                    id="outlined-adornment-amount"
-                    startAdornment={
-                      <InputAdornment position="start">$</InputAdornment>
-                    }
-                    label="Price"
-                    value={data.price}
-                  />
-                </FormControl>
+                <TextField
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  id="standard-basic"
+                  label="Location"
+                  name="location"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  size="small"
+                  value={data.location}
+                />
               </Grid>
 
               <TextareaAutosize

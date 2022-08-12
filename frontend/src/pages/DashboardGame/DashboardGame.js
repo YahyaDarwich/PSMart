@@ -27,7 +27,7 @@ const DashboardGame = () => {
   useEffect(() => {
     // get all games
     axios
-      .get(`${BASE_URL}/game`, adminHeaders)
+      .get(`${BASE_URL}/game`)
       .then((res) => setGames(res.data.data))
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, []);

@@ -102,7 +102,13 @@ const Navbar = () => {
                     logout(e);
                   }}
                 >
-                  <a href="#" className="nav__link">
+                  <a
+                    href="#"
+                    className="nav__link"
+                    onClick={(e) => {
+                      logout(e);
+                    }}
+                  >
                     Logout
                   </a>
                 </li>

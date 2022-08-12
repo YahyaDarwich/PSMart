@@ -51,9 +51,12 @@ const AccessPage = () => {
               setTimeout(() => {
                 window.location.href = "dash/tradedgames";
               }, 2000);
-              toastSuccess("Login Successfully");
+              toastSuccess("Welcome Back!");
             } else {
               cookies.set("TOKEN_USER", response.data.token, { path: "/" });
+              cookies.set("USER_ID", res.data.user.id, {
+                path: "/",
+              });
               setTimeout(() => {
                 window.location.href = "/home";
               }, 2000);
