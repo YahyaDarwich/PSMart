@@ -23,7 +23,18 @@ use App\Http\Controllers\UserController;
 Route::post('register', [UserController::class, 'register']);
 // login
 Route::post('login', [UserController::class, 'authenticate']);
+// getAll games
+Route::group(['prefix' => 'game'], function () {
+    Route::get('/', [GameController::class, 'getAll']);
+    Route::get('/latest', [GameController::class, 'getLatest']);
+});
+// getAll tradded games
+Route::group(['prefix' => 'traddedgame'], function () {
+    Route::get('/approved', [TraddedGameController::class, 'getApproved']);
 
+});
+
+// secure routes
 Route::group(['middleware' => ['jwt.verify']], function () {
 
     // Users Routes
@@ -32,6 +43,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'delete']);
     });
+
     Route::get('users', [UserController::class, 'getAllUsers']);
     Route::get('admins', [UserController::class, 'getAllAdmins']);
     // Get the authenticated user data need authorization token
@@ -57,7 +69,6 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     // Game Routes
     Route::group(['prefix' => 'game'], function () {
-        Route::get('/', [GameController::class, 'getAll']);
         Route::get('/{id}', [GameController::class, 'get']);
         Route::post('/', [GameController::class, 'create']);
         Route::post('/{id}', [GameController::class, 'update']);

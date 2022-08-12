@@ -57,6 +57,30 @@ class TraddedGameController extends Controller
         }
     }
 
+    // get All Approved Tradded Games
+    public function getApproved()
+    {
+        $games = TradedGame::where('status', 'approved')->get();
+        $count = $games->count();
+        if ($count === 0) {
+            $response = [
+                'status' => 401,
+                'message' => "Games approved not found!",
+                'data' => null
+            ];
+            return response($response, 401);
+        }
+        if (isset($games)) {
+            $response = [
+                'status' => 200,
+                'message' => "Get all approved games done!",
+                'data' => $games,
+                'count' => $count
+            ];
+            return response($response, 200);
+        }
+    }
+
     // get tradded game
     public function get($id)
     {
@@ -105,11 +129,13 @@ class TraddedGameController extends Controller
             [
                 'name' => 'required|string',
                 'publisher' => 'required|string',
-                // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'description' => 'required|string',
                 'trade_to' => 'required|string',
                 'status' => 'required|string',
-                'price' => 'required|numeric',
+                'genre' => 'required|string',
+                'platform' => 'required|string',
+                'location' => 'required|string',
                 'user_id' => 'required|integer|min:1',
             ]
         );
@@ -128,7 +154,7 @@ class TraddedGameController extends Controller
             if (!isset($user)) {
                 $response = [
                     'status' => 401,
-                    'message' => "Genre $request->user_id not exist",
+                    'message' => "User $request->user_id not exist",
                     'data' => null
                 ];
                 return response($response, 401);
@@ -136,11 +162,11 @@ class TraddedGameController extends Controller
         }
 
         // upload image
-        // if ($files = $request->file('image')) {
-        //     $destinationPath = 'image/'; // upload path to public folder
-        //     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-        //     $files->move($destinationPath, $profileImage); // to access image from frontend http://localhost:8000/image/20220321210916.jpg
-        // }
+        if ($files = $request->file('image')) {
+            $destinationPath = 'image/'; // upload path to public folder
+            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage); // to access image from frontend http://localhost:8000/image/20220321210916.jpg
+        }
 
         $game = TradedGame::create([
             'name' => $request->get('name'),
@@ -148,9 +174,11 @@ class TraddedGameController extends Controller
             'description' => $request->get('description'),
             'trade_to' => $request->get('trade_to'),
             'status' => $request->get('status'),
-            'price' => $request->get('price'),
+            'genre' => $request->get('genre'),
+            'platform' => $request->get('platform'),
+            'location' => $request->get('location'),
             'user_id' => $request->get('user_id'),
-            // 'image' =>  $profileImage
+            'image' =>  $profileImage
         ]);
         $response = [
             'status' => 200,
@@ -168,11 +196,13 @@ class TraddedGameController extends Controller
             [
                 'name' => 'required|string',
                 'publisher' => 'required|string',
-                // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'description' => 'required|string',
                 'trade_to' => 'required|string',
                 'status' => 'required|string',
-                'price' => 'required|numeric',
+                'genre' => 'required|string',
+                'platform' => 'required|string',
+                'location' => 'required|string',
                 'user_id' => 'required|integer|min:1',
             ]
         );

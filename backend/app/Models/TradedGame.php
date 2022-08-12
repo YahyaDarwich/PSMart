@@ -14,9 +14,11 @@ class TradedGame extends Model
         'trade_to',
         'image',
         'description',
-        'price',
         'status',
-        'user_id'
+        'user_id',
+        'genre',
+        'platform',
+        'location'
     ];
     public function users()
     {

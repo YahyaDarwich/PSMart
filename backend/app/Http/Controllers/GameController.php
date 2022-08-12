@@ -34,6 +34,30 @@ class GameController extends Controller
         }
     }
 
+    // get latest 5 games
+    public function getLatest()
+    {
+        $games = Game::orderBy('id', 'desc')->take(5)->get();
+        $count = Game::count();
+        if ($count === 0) {
+            $response = [
+                'status' => 401,
+                'message' => "Games not found!",
+                'data' => null
+            ];
+            return response($response, 401);
+        }
+        if (isset($games)) {
+            $response = [
+                'status' => 200,
+                'message' => "Get all games done!",
+                'data' => $games,
+                'count' => $count
+            ];
+            return response($response, 200);
+        }
+    }
+
     // get game
     public function get($id)
     {
@@ -64,7 +88,7 @@ class GameController extends Controller
             [
                 'name' => 'required|string',
                 'publisher' => 'required|string',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'description' => 'required|string',
                 // 'features' => 'required|string',
                 'price' => 'required|numeric',
@@ -142,7 +166,7 @@ class GameController extends Controller
             [
                 'name' => 'required|string',
                 'publisher' => 'required|string',
-                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'description' => 'required|string',
                 // 'features' => 'required|string',
                 'price' => 'required|numeric',
