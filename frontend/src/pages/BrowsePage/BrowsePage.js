@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import { BASE_URL } from "../../utils/url";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const BrowsePage = () => {
   const [games, setGames] = useState([]);
@@ -30,11 +31,17 @@ const BrowsePage = () => {
       <div className="browse_container">
         {games.map((game, index) => {
           return (
-            <BrowseGameContainer
-              img={"http://localhost:8000/image/" + game.image}
-              name={game.name}
-              key={index}
-            />
+            <Link
+              to={{
+                pathname: `/game/${game.id}`,
+              }}
+            >
+              <BrowseGameContainer
+                img={"http://localhost:8000/image/" + game.image}
+                name={game.name}
+                key={index}
+              />
+            </Link>
           );
         })}
       </div>

@@ -5,6 +5,7 @@ import { BASE_URL } from "../../utils/url";
 import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
 
 const TradingPage = () => {
   const [games, setGames] = useState([]);
@@ -30,12 +31,18 @@ const TradingPage = () => {
       <div className="trade_page_container">
         {games.map((game, index) => {
           return (
-            <TradeGameContainer
-              img={"http://localhost:8000/image/" + game.image}
-              name={game.name}
-              tradeTo={game.trade_to}
-              key={index}
-            />
+            <Link
+              to={{
+                pathname: `/traddedgame/${game.id}`,
+              }}
+            >
+              <TradeGameContainer
+                img={"http://localhost:8000/image/" + game.image}
+                name={game.name}
+                tradeTo={game.trade_to}
+                key={index}
+              />
+            </Link>
           );
         })}
       </div>

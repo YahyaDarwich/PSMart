@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./GameInfoPage.css";
+import "./TradedGameInfo.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -10,16 +10,25 @@ import { userToken } from "../../utils/Token";
 const GameInfoPage = () => {
   const id = document.URL.split("/")[4];
   const [game, setGame] = useState([]);
-  const [platforms, setPlatforms] = useState([]);
-  const [genres, setGenres] = useState([]);
+  const [phone, setPhone] = useState([]);
+  // const [platforms, setPlatforms] = useState([]);
+  // const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/game/${id}`)
+      .get(`${BASE_URL}/traddedgame/${id}`)
       .then((res) => {
         setGame(res.data.data);
-        setPlatforms(res.data.data.platforms);
-        setGenres(res.data.data.genres);
+        // setPlatforms(res.data.data.platforms);
+        // setGenres(res.data.data.genres);
+      })
+      .catch((err) => console.log(`Error: ${err.response.data.message}`));
+
+    // get user
+    axios
+      .get(`${BASE_URL}/user/${game.user_id}`)
+      .then((res) => {
+        setPhone(res.data.data.phone);
       })
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, []);
@@ -27,7 +36,9 @@ const GameInfoPage = () => {
   const buy = (e) => {
     if (userToken) {
       window.open(
-        "https://web.whatsapp.com/send?phone=96176342113&text&app_absent=0",
+        "https://web.whatsapp.com/send?phone=961" +
+          phone +
+          "&text&app_absent=0",
         "_blank"
       );
     } else {
@@ -42,22 +53,15 @@ const GameInfoPage = () => {
           <h2 className="name">{game.name}</h2>
           <span className="publisher">{game.publisher}</span>
           <div className="platforms">
-            {platforms.map((platform, index) => {
-              return (
-                <span className="platform" key={index}>
-                  {platform.name}
-                </span>
-              );
-            })}
+            <span className="platform">{game.platform}</span>
           </div>
-          <span className="price">${game.price}</span>
           <button
             className="buy-btn"
             onClick={(e) => {
               buy(e);
             }}
           >
-            <span>Buy on </span> <WhatsAppIcon />
+            <span>Contact on </span> <WhatsAppIcon />
           </button>
         </div>
         <div className="image_and_info_container">
@@ -78,13 +82,7 @@ const GameInfoPage = () => {
               <div className="item">
                 <span className="item-name">Platform: </span>
                 <div style={{ width: "60%" }}>
-                  {platforms.map((platform, index) => {
-                    return (
-                      <span className="item-info" key={index}>
-                        {platform.name}{" "}
-                      </span>
-                    );
-                  })}
+                  <span className="item-info">{game.platform}</span>
                 </div>
               </div>
               <div className="item">
@@ -92,18 +90,8 @@ const GameInfoPage = () => {
                 <span className="item-info">{game.publisher}</span>
               </div>
               <div className="item">
-                <span className="item-name">Release: </span>
-                <span className="item-info">{game.release_date}</span>
-              </div>
-              <div className="item">
                 <span className="item-name">Genre: </span>
-                {genres.map((genre, index) => {
-                  return (
-                    <span className="item-info" key={index}>
-                      {genre.name}{" "}
-                    </span>
-                  );
-                })}
+                <span className="item-info">{game.genre}</span>
               </div>
             </div>
           </div>

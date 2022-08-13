@@ -16,6 +16,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoutesUsers from "./components/ProtectedRoutesUsers/ProtectedRoutesUsers";
 import ProtectedRoutesDash from "./components/ProtectedRoutesDash/ProtectedRoutesDash";
+import GameInfoPage from "./pages/GameInfoPage/GameInfoPage";
+import TradeGameInfo from "./pages/TradedGameInfo/TradedGameInfo";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
           <Route exact path="/access" element={<AccessPage />} />
           <Route exact path="/browse" element={<BrowsePage />} />
           <Route exact path="/trading" element={<TradingPage />} />
+          <Route exact path="/game/:id" element={<GameInfoPage />} />
+          <Route exact path="/traddedgame/:id" element={<TradeGameInfo />} />
           <Route exact path="/*" element={<NotFoundPage />} />
           <Route exact element={<ProtectedRoutesUsers />}>
             <Route exact path="/add" element={<AddTradePage />} />

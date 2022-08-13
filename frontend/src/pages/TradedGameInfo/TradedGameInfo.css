@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: space-between;
   max-width: 580px;
-  min-width: 300px;
+  min-width: 400px;
   height: 300px;
   max-height: 300px;
   color: white;
@@ -56,11 +56,11 @@
   outline: none;
   border-radius: 25px;
   padding: 10px 5px;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: auto;
   font-weight: bold;
   background-color: #25d366;
-  width: 40%;
+  width: 45%;
   height: 45px;
   color: white;
 }
@@ -161,9 +161,6 @@
   }
   .game_info_container .image_and_info_container .info_section .basic-info {
     width: 75%;
-  }
-  .game_info_container .main_Card .buy-btn {
-    width: 45%;
   }
 }
 @media (max-width: 575px) {

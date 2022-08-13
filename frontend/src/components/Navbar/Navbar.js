@@ -59,17 +59,17 @@ const Navbar = () => {
           </div>
           <ul className="nav__list">
             <li className="nav__item">
-              <a href="home" className="nav__link">
+              <a href="/home" className="nav__link">
                 Home
               </a>
             </li>
             <li className="nav__item">
-              <a href="trading" className="nav__link">
+              <a href="/trading" className="nav__link">
                 Trading
               </a>
             </li>
             <li className="nav__item">
-              <a href="browse" className="nav__link">
+              <a href="/browse" className="nav__link">
                 Browse
               </a>
             </li>
@@ -81,12 +81,12 @@ const Navbar = () => {
             {userToken ? (
               <>
                 <li className="nav__item" id="profile">
-                  <a href="manage" className="nav__link">
+                  <a href="/manage" className="nav__link">
                     Manage
                   </a>
                 </li>
                 <li className="nav__item" id="add-game">
-                  <a href="add" className="nav__link">
+                  <a href="/add" className="nav__link">
                     Add Game
                   </a>
                 </li>
@@ -116,10 +116,10 @@ const Navbar = () => {
             <div className="links_logged" id="menu__button">
               <ul>
                 <li className="sign_in">
-                  <a href="access">Sign in</a>
+                  <a href="/access">Sign in</a>
                 </li>
                 <li className="sign_up">
-                  <a href="access">Register</a>
+                  <a href="/access">Register</a>
                 </li>
               </ul>
             </div>
@@ -166,10 +166,10 @@ const Navbar = () => {
                 <span></span>
               </li>
               <li className="sign_in">
-                <a href="access">Sign in</a>
+                <a href="/access">Sign in</a>
               </li>
               <li className="sign_up">
-                <a href="access">Register</a>
+                <a href="/access">Register</a>
               </li>
             </ul>
           </div>

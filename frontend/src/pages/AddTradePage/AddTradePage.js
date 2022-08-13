@@ -102,7 +102,7 @@ const AddTradePage = () => {
       .then((res) => {
         console.log(res.data.data);
         setTimeout(() => {
-          window.location.href = "/home";
+          window.location.href = "/manage";
         }, 2000);
         toastSuccess(res.data.message);
       })

@@ -21,16 +21,16 @@ function Footer() {
           <ul className="sitemap">
             <h3>Sitemap</h3>
             <li>
-              <a href="">Home</a>
+              <a href="home">Home</a>
             </li>
             <li>
-              <a href="">Trading</a>
+              <a href="trading">Trading</a>
             </li>
             <li>
-              <a href="">Browse</a>
+              <a href="browse">Browse</a>
             </li>
             <li>
-              <a href="">Collections</a>
+              <a href="collections">Collections</a>
             </li>
           </ul>
           <div className="footer--subscribe">

@@ -3,6 +3,7 @@ import "./LatestGames.css";
 import GameContainer from "../GameContainer/GameContainer";
 import { BASE_URL } from "../../utils/url";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const LatestGames = () => {
   const [games, setGames] = useState([]);
@@ -25,13 +26,19 @@ const LatestGames = () => {
       <div className="games_container">
         {games.map((game, index) => {
           return (
-            <GameContainer
-              img={"http://localhost:8000/image/" + game.image}
-              platform={game.platforms}
-              name={game.name}
-              price={game.price}
-              key={index}
-            />
+            <Link
+              to={{
+                pathname: `/game/${game.id}`,
+              }}
+            >
+              <GameContainer
+                img={"http://localhost:8000/image/" + game.image}
+                platform={game.platforms}
+                name={game.name}
+                price={game.price}
+                key={index}
+              />
+            </Link>
           );
         })}
       </div>
