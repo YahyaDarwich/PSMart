@@ -34,11 +34,11 @@ const Dashboard = () => {
         <Sidebar />
         <ContentContainer>
           <Routes>
-            <Route path="/tradedgames" element={<DashTradedGames />} />
-            <Route path="/games" element={<DashboardGame />} />
-            <Route path="/genre" element={<DashboardGenre />} />
-            <Route path="/platforms" element={<DashboardPlatform />} />
-            <Route path="/admins" element={<DashboardAdmin />} />
+            <Route exact path="/tradedgames" element={<DashTradedGames />} />
+            <Route exact path="/games" element={<DashboardGame />} />
+            <Route exact path="/genre" element={<DashboardGenre />} />
+            <Route exact path="/platforms" element={<DashboardPlatform />} />
+            <Route exact path="/admins" element={<DashboardAdmin />} />
           </Routes>
         </ContentContainer>
       </div>

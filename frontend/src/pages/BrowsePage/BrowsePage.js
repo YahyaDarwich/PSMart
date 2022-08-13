@@ -25,7 +25,7 @@ const BrowsePage = () => {
       <Navbar />
       <div className="browse_section_header">
         <h3>All Games</h3>
-        <span>{count}</span>
+        <span>{count} items</span>
       </div>
       <div className="browse_container">
         {games.map((game, index) => {

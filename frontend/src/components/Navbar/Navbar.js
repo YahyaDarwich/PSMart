@@ -73,21 +73,16 @@ const Navbar = () => {
                 Browse
               </a>
             </li>
-            {/* <li className="nav__item">
-              <a href="collections" className="nav__link">
-                Collections
-              </a>
-            </li> */}
             <li className="nav__item">
-              <a href="contactus" className="nav__link">
+              <a className="nav__link" href="#footer_container">
                 Contact us
               </a>
             </li>
             {userToken ? (
               <>
                 <li className="nav__item" id="profile">
-                  <a href="profile" className="nav__link">
-                    Profile
+                  <a href="manage" className="nav__link">
+                    Manage
                   </a>
                 </li>
                 <li className="nav__item" id="add-game">
@@ -147,7 +142,7 @@ const Navbar = () => {
             </Avatar>
             <div className="user_menu" id="user_menu">
               <li className="item">
-                <a href="/profile">Profile</a>
+                <a href="/manage">Manage</a>
               </li>
               <li className="item">
                 <a href="/add">Add Game</a>

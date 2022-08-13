@@ -147,6 +147,7 @@
   position: relative;
 }
 .navbar__container .avatar .user_menu {
+  display: none;
   background-color: #fff;
   right: 0;
   position: absolute;
@@ -155,7 +156,6 @@
   text-align: center;
   list-style: none;
   top: 45px;
-  display: none;
   border-radius: 10px;
   z-index: 999;
   box-shadow: rgb(0 0 0 / 30%) 0px 5px 12px;

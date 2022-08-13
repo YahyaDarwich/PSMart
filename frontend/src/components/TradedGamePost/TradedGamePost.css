@@ -1,0 +1,80 @@
+.post {
+  background-color: #e5e5e5;
+  border-radius: 6px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  height: 90px;
+}
+.post .post_main {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+.post .post_img {
+  margin-right: 10px;
+}
+.post .post_img img {
+  width: 90px;
+  height: 100%;
+  border-radius: 5px;
+}
+.post .post_info .title {
+  margin: 0;
+  margin-bottom: 10px !important;
+  font-size: 16px;
+}
+.post .post_info .description {
+  font-size: 12px;
+  width: 80%;
+}
+.post .post_second {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+.post .post_second span {
+  padding: 5px 4px;
+  width: 75px;
+  border-radius: 5px;
+  margin-right: 15px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.post .post_actions {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 70%;
+}
+.post .post_actions .edit {
+  border: 0;
+  outline: 0;
+  width: 75px;
+  padding: 5px 0;
+  background-color: var(--main-blue);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.post .post_actions .delete {
+  border: 0;
+  outline: 0;
+  width: 75px;
+  padding: 5px 0;
+  background-color: var(--main-red);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}

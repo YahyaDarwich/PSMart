@@ -10,8 +10,12 @@ import {
   Routes,
 } from "react-router-dom";
 import AddTradePage from "./pages/AddTradePage/AddTradePage";
+import ManagePage from "./pages/ManagePage/ManagePage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import { ToastContainer } from "react-toastify";
+import ProtectedRoutesUsers from "./components/ProtectedRoutesUsers/ProtectedRoutesUsers";
+import ProtectedRoutesDash from "./components/ProtectedRoutesDash/ProtectedRoutesDash";
 
 function App() {
   return (
@@ -34,8 +38,14 @@ function App() {
           <Route exact path="/access" element={<AccessPage />} />
           <Route exact path="/browse" element={<BrowsePage />} />
           <Route exact path="/trading" element={<TradingPage />} />
-          <Route exact path="/add" element={<AddTradePage />} />
-          <Route exact path="/dash/*" element={<Dashboard />} />
+          <Route exact path="/*" element={<NotFoundPage />} />
+          <Route exact element={<ProtectedRoutesUsers />}>
+            <Route exact path="/add" element={<AddTradePage />} />
+            <Route exact path="/manage" element={<ManagePage />} />
+          </Route>
+          <Route exact element={<ProtectedRoutesDash />}>
+            <Route exact path="/dash/*" element={<Dashboard />} />
+          </Route>
         </Routes>
       </Router>
     </>

@@ -1,0 +1,14 @@
+.not_found_Container {
+  height: 100vh;
+  width: fit-content;
+  margin: auto;
+}
+
+@media (max-width: 767px) {
+  .not_found_Container {
+    width: 350px;
+  }
+  .not_found_Container img {
+    width: 350px;
+  }
+}

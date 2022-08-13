@@ -1,0 +1,14 @@
+.manage_games_container {
+  min-height: 70vh;
+  padding: 20px;
+  margin: auto;
+}
+.manage_games_container .header_title {
+  margin-bottom: 40px;
+  font-size: 25px;
+}
+.manage_games_container .posts_grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 15px 20px;
+}

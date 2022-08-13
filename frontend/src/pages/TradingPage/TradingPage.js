@@ -25,7 +25,7 @@ const TradingPage = () => {
       <Navbar />
       <div className="trade_section_header">
         <h3>All Games</h3>
-        <span>{count}</span>
+        <span>{count} items</span>
       </div>
       <div className="trade_page_container">
         {games.map((game, index) => {
