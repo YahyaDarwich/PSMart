@@ -196,7 +196,7 @@ class TraddedGameController extends Controller
             [
                 'name' => 'required|string',
                 'publisher' => 'required|string',
-                // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'description' => 'required|string',
                 'trade_to' => 'required|string',
                 'status' => 'required|string',
@@ -221,24 +221,34 @@ class TraddedGameController extends Controller
             if (!isset($user)) {
                 $response = [
                     'status' => 401,
-                    'message' => "Genre $request->user_id not exist",
+                    'message' => "User $request->user_id not exist",
                     'data' => null
                 ];
                 return response($response, 401);
             }
         }
 
-        // if ($request->file('image')) {
-        //     $destinationPath = 'image/'; // upload path to public folder
-        //     $profileImage = date('YmdHis') . "." . $request->file('image')->getClientOriginalExtension();
-        //     $request->file('image')->move($destinationPath, $profileImage); // to access image from frontend http://localhost:8000/image/20220321210916.jpg
-        //     $game->image = $profileImage;
-        //     $game->save();
-        // }
-
         $game = TradedGame::find($id);
+        if ($request->file('image')) {
+            $destinationPath = 'image/'; // upload path to public folder
+            $profileImage = date('YmdHis') . "." . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move($destinationPath, $profileImage); // to access image from frontend http://localhost:8000/image/20220321210916.jpg
+            $game->image = $profileImage;
+            $game->save();
+        }
+
         if (isset($game)) {
-            $game->update($request->all());
+            $game->update([
+                'name' => $request->get('name'),
+                'publisher' => $request->get('publisher'),
+                'description' => $request->get('description'),
+                'trade_to' => $request->get('trade_to'),
+                'genre' => $request->get('genre'),
+                'platform' => $request->get('platform'),
+                'user_id' => $request->get('user_id'),
+                'location' => $request->get('location'),
+                'status' => $request->get('status'),
+            ]);
             $response = [
                 'status' => 200,
                 'message' => "Tradded game updated successfully!",

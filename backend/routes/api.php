@@ -23,16 +23,22 @@ use App\Http\Controllers\UserController;
 Route::post('register', [UserController::class, 'register']);
 // login
 Route::post('login', [UserController::class, 'authenticate']);
-// getAll games
+// get games
 Route::group(['prefix' => 'game'], function () {
     Route::get('/', [GameController::class, 'getAll']);
     Route::get('/latest', [GameController::class, 'getLatest']);
+    Route::get('/{id}', [GameController::class, 'get']);
 });
-// getAll tradded games
+// get tradded games
 Route::group(['prefix' => 'traddedgame'], function () {
     Route::get('/approved', [TraddedGameController::class, 'getApproved']);
-
+    Route::get('/{id}', [TraddedGameController::class, 'get']);
 });
+// get user
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/{id}', [UserController::class, 'get']);
+});
+
 
 // secure routes
 Route::group(['middleware' => ['jwt.verify']], function () {
@@ -69,7 +75,6 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     // Game Routes
     Route::group(['prefix' => 'game'], function () {
-        Route::get('/{id}', [GameController::class, 'get']);
         Route::post('/', [GameController::class, 'create']);
         Route::post('/{id}', [GameController::class, 'update']);
         Route::delete('/{id}', [GameController::class, 'delete']);
@@ -78,7 +83,6 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     // Tradded game Routes
     Route::group(['prefix' => 'traddedgame'], function () {
         Route::get('/', [TraddedGameController::class, 'getAll']);
-        Route::get('/{id}', [TraddedGameController::class, 'get']);
         Route::get('/user/{id}', [TraddedGameController::class, 'getByUser']);
         Route::get('/status/{id}', [TraddedGameController::class, 'getByStatus']);
         Route::post('/', [TraddedGameController::class, 'create']);
