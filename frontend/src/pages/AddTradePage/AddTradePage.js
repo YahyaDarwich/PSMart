@@ -115,7 +115,7 @@ const AddTradePage = () => {
         <h1>New Trading Post</h1>
         <p>PLease fill all fiels with your game information.</p>
       </div>
-      <form>
+      <form className="add_trade_form">
         <div className="form_container_one">
           <div className="game-name-input">
             <TextField

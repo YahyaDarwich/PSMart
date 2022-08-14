@@ -6,21 +6,23 @@
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-  height: 90px;
+  height: 100px;
 }
 .post .post_main {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  cursor: pointer;
 }
 .post .post_img {
   margin-right: 10px;
 }
 .post .post_img img {
-  width: 90px;
+  width: 100px;
   height: 100%;
   border-radius: 5px;
+}
+.post .post_info {
+  margin: 10px 10px;
 }
 .post .post_info .title {
   margin: 0;
@@ -29,7 +31,9 @@
 }
 .post .post_info .description {
   font-size: 12px;
-  width: 80%;
+  width: 90%;
+  height: 55px;
+  overflow: scroll;
 }
 .post .post_second {
   display: flex;
@@ -77,4 +81,9 @@
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+}
+@media (max-width: 575px) {
+  .post .post_img {
+    display: none;
+  }
 }

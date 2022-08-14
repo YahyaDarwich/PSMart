@@ -12,3 +12,8 @@
   grid-template-columns: auto auto;
   grid-gap: 15px 20px;
 }
+@media (max-width: 767px) {
+  .manage_games_container .posts_grid {
+    grid-template-columns: auto;
+  }
+}

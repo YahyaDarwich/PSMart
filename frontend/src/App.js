@@ -18,6 +18,7 @@ import ProtectedRoutesUsers from "./components/ProtectedRoutesUsers/ProtectedRou
 import ProtectedRoutesDash from "./components/ProtectedRoutesDash/ProtectedRoutesDash";
 import GameInfoPage from "./pages/GameInfoPage/GameInfoPage";
 import TradeGameInfo from "./pages/TradedGameInfo/TradedGameInfo";
+import FlipLoader from "./components/FlipLoader/FlipLoader";
 
 function App() {
   return (

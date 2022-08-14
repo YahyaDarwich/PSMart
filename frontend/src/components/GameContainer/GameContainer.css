@@ -16,7 +16,7 @@
 }
 .one_game_container a .img_container {
   width: 100%;
-  height: 100%;
+  height: fit-content;
 }
 .one_game_container .img_container img {
   min-width: 100%;

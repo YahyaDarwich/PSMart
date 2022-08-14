@@ -6,10 +6,12 @@ import Footer from "../../components/Footer/Footer";
 import { BASE_URL } from "../../utils/url";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import FlipLoader from "../../components/FlipLoader/FlipLoader";
 
 const BrowsePage = () => {
   const [games, setGames] = useState([]);
   const [count, setCount] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // get all games
@@ -18,6 +20,7 @@ const BrowsePage = () => {
       .then((res) => {
         setGames(res.data.data);
         setCount(res.data.count);
+        setLoading(false);
       })
       .catch((err) => console.log(`Error: ${err.response.data.message}`));
   }, []);
@@ -29,21 +32,25 @@ const BrowsePage = () => {
         <span>{count} items</span>
       </div>
       <div className="browse_container">
-        {games.map((game, index) => {
-          return (
-            <Link
-              to={{
-                pathname: `/game/${game.id}`,
-              }}
-            >
-              <BrowseGameContainer
-                img={"http://localhost:8000/image/" + game.image}
-                name={game.name}
-                key={index}
-              />
-            </Link>
-          );
-        })}
+        {loading ? (
+          <FlipLoader />
+        ) : (
+          games.map((game, index) => {
+            return (
+              <Link
+                to={{
+                  pathname: `/game/${game.id}`,
+                }}
+              >
+                <BrowseGameContainer
+                  img={"http://localhost:8000/image/" + game.image}
+                  name={game.name}
+                  key={index}
+                />
+              </Link>
+            );
+          })
+        )}
       </div>
       <Footer />
     </>

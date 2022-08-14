@@ -7,7 +7,7 @@
 .form_title p {
   font-size: 15px;
 }
-form {
+.add_trade_form {
   width: 100%;
   display: flex;
   margin: auto;
@@ -53,7 +53,7 @@ form {
   justify-content: space-between;
 }
 @media (max-width: 767px) {
-  form {
+  .add_trade_form {
     flex-direction: column;
   }
   .form_container_one {
