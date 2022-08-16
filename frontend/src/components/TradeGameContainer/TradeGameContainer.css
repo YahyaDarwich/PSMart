@@ -26,6 +26,7 @@
   width: 100%;
   transition: opacity 0.4s ease;
   border-radius: 6px;
+  /* max-height: 220px; */
 }
 .trade_game_container a .img_container img:hover {
   opacity: 0.8;

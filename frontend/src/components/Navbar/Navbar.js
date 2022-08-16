@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { userToken } from "../../utils/Token";
+import { accessName, userToken } from "../../utils/Token";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import Cookies from "universal-cookie";
@@ -129,7 +129,7 @@ const Navbar = () => {
         </nav>
         {userToken ? (
           <div className="avatar" onClick={click_avatar}>
-            <span>Yahya Darwich</span>
+            <span>{accessName}</span>
             <Avatar
               sx={{
                 bgcolor: deepOrange[500],
@@ -138,7 +138,7 @@ const Navbar = () => {
                 fontSize: 19,
               }}
             >
-              Y
+              {accessName.charAt(0)}
             </Avatar>
             <div className="user_menu" id="user_menu">
               <li className="item">

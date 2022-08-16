@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: space-between;
   max-width: 580px;
-  min-width: 300px;
+  min-width: 380px;
   height: 300px;
   max-height: 300px;
   color: white;
@@ -172,6 +172,7 @@
     right: 0;
     max-height: 260px;
     top: 340px;
+    min-width: 0;
   }
   .game_info_container .main_Card .name {
     font-size: 25px;

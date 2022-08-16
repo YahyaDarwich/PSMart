@@ -94,7 +94,9 @@ const TradedGamePost = (props) => {
           Edit {gameName} Game
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>Here you can edit the games.</DialogContentText>
+          <DialogContentText style={{ marginBottom: 15 }}>
+            Here you can edit your game.
+          </DialogContentText>
           <EditTradedGameUser open={(e) => setEditOpen(e)} gameID={gameID} />
         </DialogContent>
       </Dialog>

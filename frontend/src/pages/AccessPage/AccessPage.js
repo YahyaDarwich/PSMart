@@ -77,6 +77,9 @@ const AccessPage = () => {
     axios
       .post(`${BASE_URL}/register`, register)
       .then((res) => {
+        setTimeout(() => {
+          window.location.href = "/access";
+        }, 2000);
         toastSuccess("Successfully Register! try to login now");
       })
       .catch((err) => toastError(err.response.data.message));

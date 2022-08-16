@@ -38,7 +38,7 @@ const DashboardGame = () => {
       .delete(`${BASE_URL}/game/${id}`, adminHeaders)
       .then((res) => {
         setGames(res.data.data);
-        toastSuccess(res.data.message)
+        toastSuccess(res.data.message);
       })
       .catch((err) => toastError(err.response.data.message));
   };
@@ -111,7 +111,7 @@ const DashboardGame = () => {
         >
           Add Game
         </Button>
-        <div style={{ height: 400, width: "100%", margin: "auto" }}>
+        <div style={{ height: 425, width: "100%", margin: "auto" }}>
           <DataGrid
             rows={games}
             columns={columns}
@@ -157,7 +157,9 @@ const DashboardGame = () => {
           Edit {gameName} Game
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>Here you can edit the games.</DialogContentText>
+          <DialogContentText style={{ marginBottom: 15 }}>
+            Here you can edit the games.
+          </DialogContentText>
           <EditGamePopup open={(e) => setEditOpen(e)} gameID={gameID} />
         </DialogContent>
       </Dialog>

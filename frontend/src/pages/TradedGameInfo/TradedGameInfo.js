@@ -14,6 +14,8 @@ const GameInfoPage = () => {
   // const [platforms, setPlatforms] = useState([]);
   // const [genres, setGenres] = useState([]);
 
+  window.scrollTo(0, 0);
+
   useEffect(() => {
     axios
       .get(`${BASE_URL}/traddedgame/${id}`)
@@ -48,21 +50,24 @@ const GameInfoPage = () => {
   return (
     <>
       <Navbar />
-      <div className="game_info_container">
+      <div className="tradded_game_info_container">
         <div className="main_Card">
           <h2 className="name">{game.name}</h2>
           <span className="publisher">{game.publisher}</span>
           <div className="platforms">
             <span className="platform">{game.platform}</span>
           </div>
-          <button
-            className="buy-btn"
-            onClick={(e) => {
-              buy(e);
-            }}
-          >
-            <span>Contact on </span> <WhatsAppIcon />
-          </button>
+          <div className="place_action">
+            <span>{game.location}</span>
+            <button
+              className="buy-btn"
+              onClick={(e) => {
+                buy(e);
+              }}
+            >
+              <span>Contact on </span> <WhatsAppIcon />
+            </button>
+          </div>
         </div>
         <div className="image_and_info_container">
           <div className="img_container">

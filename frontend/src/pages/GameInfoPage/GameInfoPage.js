@@ -13,6 +13,8 @@ const GameInfoPage = () => {
   const [platforms, setPlatforms] = useState([]);
   const [genres, setGenres] = useState([]);
 
+  window.scrollTo(0, 0);
+
   useEffect(() => {
     axios
       .get(`${BASE_URL}/game/${id}`)
@@ -97,13 +99,15 @@ const GameInfoPage = () => {
               </div>
               <div className="item">
                 <span className="item-name">Genre: </span>
-                {genres.map((genre, index) => {
-                  return (
-                    <span className="item-info" key={index}>
-                      {genre.name}{" "}
-                    </span>
-                  );
-                })}
+                <div style={{ width: "60%" }}>
+                  {genres.map((genre, index) => {
+                    return (
+                      <span className="item-info" key={index}>
+                        {genre.name}{" "}
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ const Landing = () => {
       <div className="landing--container">
         <div className="overlay"></div>
         <div className="landing--text">
-          <h2>Trade The Games</h2>
+          <h2>Trade Your Games</h2>
           <p>
             Lebanon's First Cryptocurrency Fantasy Trading Gaming Platform Which
             Gives You Real Trading Experience

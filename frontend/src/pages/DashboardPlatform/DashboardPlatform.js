@@ -161,7 +161,7 @@ const DashboardGenre = () => {
         >
           Add Platform
         </Button>
-        <div style={{ height: 400, width: 560, margin: "auto" }}>
+        <div style={{ height: 425, width: 560, margin: "auto" }}>
           <DataGrid
             rows={platforms}
             columns={columns}
