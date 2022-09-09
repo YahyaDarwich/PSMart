@@ -39,7 +39,7 @@ const TraddedSection = () => {
               </div>
               <h4>Explore more</h4>
               <p>
-                You can explore the others tradded games. Also click browse link
+                You can explore the others traded games. Also click browse link
                 to buy new one.
               </p>
             </div>

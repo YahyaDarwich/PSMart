@@ -26,7 +26,7 @@ const ManagePage = () => {
     <>
       <Navbar />
       <div className="manage_games_container">
-        <h2 className="header_title">Manage your tadded games here!</h2>
+        <h2 className="header_title">Manage your taded games here!</h2>
         <div className="posts_grid">
           {loading ? (
             <FlipLoader />
